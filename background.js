@@ -81,6 +81,76 @@ const commands = {
     const n = parseFloat(t); return isNaN(n) ? 'Invalid' : `${+(n / 16).toFixed(4)}rem`
   },
 
+  // --- Dictionary lookups (local, no network) ---
+  ascii: (t) => {
+    // Converts char → decimal code, or decimal → char. Multiple chars show a table.
+    if (!t) return 'Usage: ascii <char or number>  e.g. ascii A  or  ascii 65'
+    const n = parseInt(t)
+    if (!isNaN(n) && String(n) === t.trim()) {
+      if (n < 0 || n > 127) return 'Out of ASCII range (0–127)'
+      return `${n} → '${String.fromCharCode(n)}'`
+    }
+    if (t.length === 1) return `'${t}' → ${t.charCodeAt(0)}`
+    return t.split('').map(c => `${c}=${c.charCodeAt(0)}`).join('  ')
+  },
+  http: (code) => {
+    const codes = {
+      100:'Continue', 101:'Switching Protocols', 102:'Processing',
+      200:'OK', 201:'Created', 202:'Accepted', 204:'No Content', 206:'Partial Content',
+      301:'Moved Permanently', 302:'Found', 303:'See Other', 304:'Not Modified',
+      307:'Temporary Redirect', 308:'Permanent Redirect',
+      400:'Bad Request', 401:'Unauthorized', 403:'Forbidden', 404:'Not Found',
+      405:'Method Not Allowed', 408:'Request Timeout', 409:'Conflict', 410:'Gone',
+      413:'Payload Too Large', 415:'Unsupported Media Type', 422:'Unprocessable Entity',
+      429:'Too Many Requests',
+      500:'Internal Server Error', 501:'Not Implemented', 502:'Bad Gateway',
+      503:'Service Unavailable', 504:'Gateway Timeout',
+    }
+    if (!code) return 'Usage: http <code>  e.g. http 404'
+    const n = parseInt(code)
+    return codes[n] ? `${n} ${codes[n]}` : `Unknown: ${code}`
+  },
+  port: (p) => {
+    const ports = {
+      20:'FTP data', 21:'FTP control', 22:'SSH', 23:'Telnet', 25:'SMTP',
+      53:'DNS', 80:'HTTP', 110:'POP3', 143:'IMAP', 443:'HTTPS',
+      465:'SMTPS', 587:'SMTP submission', 993:'IMAPS', 995:'POP3S',
+      3000:'Node.js (dev)', 3306:'MySQL', 5000:'Flask (dev)', 5432:'PostgreSQL',
+      5672:'AMQP / RabbitMQ', 6379:'Redis', 8000:'Django (dev)', 8080:'HTTP alt',
+      8443:'HTTPS alt', 9200:'Elasticsearch', 27017:'MongoDB',
+    }
+    if (!p) return 'Usage: port <number>  e.g. port 443'
+    const n = parseInt(p)
+    return ports[n] ? `${n} — ${ports[n]}` : `Unknown: ${p}`
+  },
+  mime: (ext) => {
+    const types = {
+      html:'text/html', htm:'text/html', css:'text/css',
+      js:'application/javascript', mjs:'application/javascript', ts:'application/typescript',
+      json:'application/json', xml:'application/xml', txt:'text/plain',
+      csv:'text/csv', md:'text/markdown', pdf:'application/pdf',
+      png:'image/png', jpg:'image/jpeg', jpeg:'image/jpeg', gif:'image/gif',
+      webp:'image/webp', svg:'image/svg+xml', ico:'image/x-icon', avif:'image/avif',
+      mp3:'audio/mpeg', wav:'audio/wav', ogg:'audio/ogg',
+      mp4:'video/mp4', webm:'video/webm', mov:'video/quicktime',
+      woff:'font/woff', woff2:'font/woff2', ttf:'font/ttf',
+      zip:'application/zip', gz:'application/gzip', tar:'application/x-tar',
+      wasm:'application/wasm',
+    }
+    if (!ext) return 'Usage: mime <ext>  e.g. mime png'
+    const key = ext.toLowerCase().replace(/^\./, '')
+    return types[key] ? `${key} → ${types[key]}` : `Unknown: ${ext}`
+  },
+  chmod: (octal) => {
+    // Converts octal permission string to symbolic notation (e.g. 755 → rwxr-xr-x)
+    if (!octal) return 'Usage: chmod <octal>  e.g. chmod 755'
+    if (!/^[0-7]{3,4}$/.test(octal)) return 'Expected 3–4 octal digits  e.g. chmod 755'
+    const bits = octal.length === 4 ? octal.slice(1) : octal
+    const map = ['---','--x','-w-','-wx','r--','r-x','rw-','rwx']
+    const sym = bits.split('').map(d => map[parseInt(d)]).join('')
+    return `${sym}  (owner:${map[parseInt(bits[0])]} group:${map[parseInt(bits[1])]} other:${map[parseInt(bits[2])]})`
+  },
+
   // --- Lookup (API) ---
   zip: async (code) => {
     // Japanese postal code → address via zipcloud.ibsnet.co.jp (free, no key)
@@ -94,7 +164,7 @@ const commands = {
     return `${r.address1}${r.address2}${r.address3}`
   },
 
-  '?': () => 'uuid  pw [n]  sha  b64  b64d  jwt  ts  now  cal [date]  age <date>  upper  lower  slug  camel  snake  lorem [n]  wc  px <n>  zip <postal>',
+  '?': () => 'uuid  pw [n]  sha  b64  b64d  jwt  ts  now  cal [date]  age <date>  upper  lower  slug  camel  snake  lorem [n]  wc  px <n>  ascii <c>  http <code>  port <n>  mime <ext>  chmod <octal>  zip <postal>',
 }
 
 async function run(input) {

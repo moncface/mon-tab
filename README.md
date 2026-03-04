@@ -34,6 +34,12 @@ Type `mon` in the address bar, press **Tab**, then enter a command. Press **Ente
 | `wc hello world` | `2 words, 11 chars` |
 | `px 24` | `1.5rem` |
 | `px 1.5rem` | `24px` |
+| `ascii A` | `65` |
+| `ascii 65` | `'A'` |
+| `http 404` | `404 Not Found` |
+| `port 443` | `443 — HTTPS` |
+| `mime png` | `png → image/png` |
+| `chmod 755` | `rwxr-xr-x` |
 | `zip 150-0001` | `東京都渋谷区神宮前` |
 | `?` | list all commands |
 
