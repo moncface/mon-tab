@@ -40,6 +40,10 @@ Type `mon` in the address bar, press **Tab**, then enter a command. Press **Ente
 | `port 443` | `443 — HTTPS` |
 | `mime png` | `png → image/png` |
 | `chmod 755` | `rwxr-xr-x` |
+| `cc JP` | `🇯🇵 Japan / JPY ¥ / +81` |
+| `cc US` | `🇺🇸 United States / USD $ / +1` |
+| `tel +81` | `+81 — Japan` |
+| `tel 1` | `+1 — United States / Canada` |
 | `zip 150-0001` | `東京都渋谷区神宮前` |
 | `?` | list all commands |
 

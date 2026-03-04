@@ -151,6 +151,98 @@ const commands = {
     return `${sym}  (owner:${map[parseInt(bits[0])]} group:${map[parseInt(bits[1])]} other:${map[parseInt(bits[2])]})`
   },
 
+  // --- Geography (local) ---
+  cc: (t) => {
+    // ISO 3166-1 alpha-2 country code → name / currency / dial code / flag emoji
+    if (!t) return 'Usage: cc <code>  e.g. cc JP'
+    const countries = {
+      AU:{n:'Australia',      c:'AUD $',   d:'+61'},
+      AT:{n:'Austria',        c:'EUR €',   d:'+43'},
+      BE:{n:'Belgium',        c:'EUR €',   d:'+32'},
+      BR:{n:'Brazil',         c:'BRL R$',  d:'+55'},
+      CA:{n:'Canada',         c:'CAD $',   d:'+1'},
+      CN:{n:'China',          c:'CNY ¥',   d:'+86'},
+      HR:{n:'Croatia',        c:'EUR €',   d:'+385'},
+      CZ:{n:'Czechia',        c:'CZK Kč',  d:'+420'},
+      DK:{n:'Denmark',        c:'DKK kr',  d:'+45'},
+      EG:{n:'Egypt',          c:'EGP £',   d:'+20'},
+      FI:{n:'Finland',        c:'EUR €',   d:'+358'},
+      FR:{n:'France',         c:'EUR €',   d:'+33'},
+      DE:{n:'Germany',        c:'EUR €',   d:'+49'},
+      GR:{n:'Greece',         c:'EUR €',   d:'+30'},
+      HK:{n:'Hong Kong',      c:'HKD $',   d:'+852'},
+      HU:{n:'Hungary',        c:'HUF Ft',  d:'+36'},
+      IN:{n:'India',          c:'INR ₹',   d:'+91'},
+      ID:{n:'Indonesia',      c:'IDR Rp',  d:'+62'},
+      IE:{n:'Ireland',        c:'EUR €',   d:'+353'},
+      IL:{n:'Israel',         c:'ILS ₪',   d:'+972'},
+      IT:{n:'Italy',          c:'EUR €',   d:'+39'},
+      JP:{n:'Japan',          c:'JPY ¥',   d:'+81'},
+      KR:{n:'South Korea',    c:'KRW ₩',   d:'+82'},
+      MY:{n:'Malaysia',       c:'MYR RM',  d:'+60'},
+      MX:{n:'Mexico',         c:'MXN $',   d:'+52'},
+      NL:{n:'Netherlands',    c:'EUR €',   d:'+31'},
+      NZ:{n:'New Zealand',    c:'NZD $',   d:'+64'},
+      NG:{n:'Nigeria',        c:'NGN ₦',   d:'+234'},
+      NO:{n:'Norway',         c:'NOK kr',  d:'+47'},
+      PK:{n:'Pakistan',       c:'PKR ₨',   d:'+92'},
+      PH:{n:'Philippines',    c:'PHP ₱',   d:'+63'},
+      PL:{n:'Poland',         c:'PLN zł',  d:'+48'},
+      PT:{n:'Portugal',       c:'EUR €',   d:'+351'},
+      RO:{n:'Romania',        c:'RON lei', d:'+40'},
+      RU:{n:'Russia',         c:'RUB ₽',   d:'+7'},
+      SA:{n:'Saudi Arabia',   c:'SAR ﷼',   d:'+966'},
+      SG:{n:'Singapore',      c:'SGD $',   d:'+65'},
+      ZA:{n:'South Africa',   c:'ZAR R',   d:'+27'},
+      ES:{n:'Spain',          c:'EUR €',   d:'+34'},
+      SE:{n:'Sweden',         c:'SEK kr',  d:'+46'},
+      CH:{n:'Switzerland',    c:'CHF Fr',  d:'+41'},
+      TW:{n:'Taiwan',         c:'TWD $',   d:'+886'},
+      TH:{n:'Thailand',       c:'THB ฿',   d:'+66'},
+      TR:{n:'Turkey',         c:'TRY ₺',   d:'+90'},
+      UA:{n:'Ukraine',        c:'UAH ₴',   d:'+380'},
+      AE:{n:'UAE',            c:'AED د.إ', d:'+971'},
+      GB:{n:'United Kingdom', c:'GBP £',   d:'+44'},
+      US:{n:'United States',  c:'USD $',   d:'+1'},
+      VN:{n:'Vietnam',        c:'VND ₫',   d:'+84'},
+    }
+    const key = t.trim().toUpperCase()
+    const entry = countries[key]
+    if (!entry) return `Unknown: ${t}  (ISO 3166-1 alpha-2, e.g. JP US DE)`
+    const flag = key.split('').map(ch => String.fromCodePoint(0x1F1E6 + ch.charCodeAt(0) - 65)).join('')
+    return `${flag} ${entry.n} / ${entry.c} / ${entry.d}`
+  },
+  tel: (t) => {
+    // International dial code → country name(s). Accepts +81 or 81.
+    if (!t) return 'Usage: tel <dial-code>  e.g. tel +81  or  tel 81'
+    const dial = {
+      '1':'United States / Canada', '7':'Russia / Kazakhstan',
+      '20':'Egypt', '27':'South Africa', '30':'Greece', '31':'Netherlands',
+      '32':'Belgium', '33':'France', '34':'Spain', '36':'Hungary',
+      '39':'Italy', '40':'Romania', '41':'Switzerland', '43':'Austria',
+      '44':'United Kingdom', '45':'Denmark', '46':'Sweden', '47':'Norway',
+      '48':'Poland', '49':'Germany', '52':'Mexico', '54':'Argentina',
+      '55':'Brazil', '56':'Chile', '57':'Colombia', '60':'Malaysia',
+      '61':'Australia', '62':'Indonesia', '63':'Philippines',
+      '64':'New Zealand', '65':'Singapore', '66':'Thailand',
+      '81':'Japan', '82':'South Korea', '84':'Vietnam', '86':'China',
+      '90':'Turkey', '91':'India', '92':'Pakistan', '94':'Sri Lanka',
+      '98':'Iran',
+      '212':'Morocco', '213':'Algeria', '216':'Tunisia',
+      '221':'Senegal', '233':'Ghana', '234':'Nigeria',
+      '254':'Kenya', '255':'Tanzania', '256':'Uganda',
+      '351':'Portugal', '352':'Luxembourg', '353':'Ireland', '354':'Iceland',
+      '358':'Finland', '380':'Ukraine', '381':'Serbia', '385':'Croatia',
+      '420':'Czechia', '421':'Slovakia',
+      '852':'Hong Kong', '855':'Cambodia', '880':'Bangladesh', '886':'Taiwan',
+      '961':'Lebanon', '962':'Jordan', '964':'Iraq', '965':'Kuwait',
+      '966':'Saudi Arabia', '971':'UAE', '972':'Israel', '974':'Qatar',
+      '977':'Nepal', '994':'Azerbaijan', '995':'Georgia', '998':'Uzbekistan',
+    }
+    const code = t.trim().replace(/^\+/, '')
+    return dial[code] ? `+${code} — ${dial[code]}` : `Unknown: +${code}`
+  },
+
   // --- Lookup (API) ---
   zip: async (code) => {
     // Japanese postal code → address via zipcloud.ibsnet.co.jp (free, no key)
@@ -164,7 +256,7 @@ const commands = {
     return `${r.address1}${r.address2}${r.address3}`
   },
 
-  '?': () => 'uuid  pw [n]  sha  b64  b64d  jwt  ts  now  cal [date]  age <date>  upper  lower  slug  camel  snake  lorem [n]  wc  px <n>  ascii <c>  http <code>  port <n>  mime <ext>  chmod <octal>  zip <postal>',
+  '?': () => 'uuid  pw [n]  sha  b64  b64d  jwt  ts  now  cal [date]  age <date>  upper  lower  slug  camel  snake  lorem [n]  wc  px <n>  ascii <c>  http <code>  port <n>  mime <ext>  chmod <octal>  cc <code>  tel <dial>  zip <postal>',
 }
 
 async function run(input) {
