@@ -32,6 +32,11 @@ Type `mon` in the address bar, press **Tab**, then enter a command. Press **Ente
 | `lorem` | Lorem ipsum sentence |
 | `lorem 3` | 3 sentences |
 | `wc hello world` | `2 words, 11 chars` |
+| `calc 1920/1080` | `1920/1080 = 1.777777778` |
+| `calc 3980*0.15` | `3980*0.15 = 597` |
+| `calc 15% of 3980` | `15% of 3980 = 597` |
+| `calc sqrt(144)` | `sqrt(144) = 12` |
+| `calc pi*5**2` | `pi*5**2 = 78.53981634` |
 | `px 24` | `1.5rem` |
 | `px 1.5rem` | `24px` |
 | `ascii A` | `65` |
