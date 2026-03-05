@@ -60,7 +60,7 @@ Opening a new tab to generate a UUID, encode base64, or look up an HTTP status c
 
 ## Roadmap
 
-70+ commands planned. See [roadmap](https://github.com/moncface/mon/issues).
+70+ commands planned. See [roadmap](https://github.com/moncface/mon-tab/issues).
 
 Contributions welcome — each command is a single independent file in `commands/`.
 
@@ -68,8 +68,7 @@ Contributions welcome — each command is a single independent file in `commands
 
 If mon[tab] saves you time, you can support development here:
 
-- [Buy Me a Coffee](https://www.buymeacoffee.com/YOUR_USERNAME)
-- [PayPal](https://www.paypal.me/YOUR_USERNAME)
+- [Buy Me a Coffee](https://buymeacoffee.com/moncface)
 
 ## License
 
