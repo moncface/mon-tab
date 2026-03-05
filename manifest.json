@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Mon [tab]",
-  "version": "1.0.0",
-  "description": "70+ dev tools in Chrome's address bar. Type mon + Tab.",
+  "version": "0.9.0",
+  "description": "24 dev tools in Chrome's address bar. Type mon + Tab.",
   "background": {
     "service_worker": "background.js",
     "type": "module"
