@@ -1,4 +1,7 @@
 import { commands } from './commands/index.js'
+import { substituteVars } from './commands/var-store.js'
+
+const noSubstitute = new Set(['m', 'mp', 'mc'])
 
 async function run(input) {
   const trimmed = input.trim()
@@ -8,7 +11,8 @@ async function run(input) {
   const arg = spaceIdx === -1 ? '' : trimmed.slice(spaceIdx + 1)
   const fn = commands[cmd]
   if (!fn) return `Unknown: "${cmd}" — try: ?`
-  return (await fn(arg)) || '(empty result)'
+  const finalArg = noSubstitute.has(cmd) ? arg : await substituteVars(arg)
+  return (await fn(finalArg)) || '(empty result)'
 }
 
 chrome.omnibox.onInputChanged.addListener((text, suggest) => {

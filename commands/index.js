@@ -43,6 +43,12 @@ import { command as tel }   from './tel.js'
 // --- Lookup (API) ---
 import { command as zip }   from './zip.js'
 
+// --- Variables ---
+import { command as m }    from './m.js'
+import { command as mp }   from './mp.js'
+import { command as ml }   from './ml.js'
+import { command as mc }   from './mc.js'
+
 // --- System ---
 import { command as opt }  from './opt.js'
 import { command as help, setCommandNames } from './help.js'
@@ -55,6 +61,7 @@ export const commands = {
   calc, px,
   ascii, http, port, mime, chmod,
   cc, tel, zip,
+  m, mp, ml, mc,
   opt,
   '?': help,
 }
