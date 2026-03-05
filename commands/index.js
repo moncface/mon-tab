@@ -43,7 +43,8 @@ import { command as tel }   from './tel.js'
 // --- Lookup (API) ---
 import { command as zip }   from './zip.js'
 
-// --- Help ---
+// --- System ---
+import { command as opt }  from './opt.js'
 import { command as help, setCommandNames } from './help.js'
 
 export const commands = {
@@ -54,6 +55,7 @@ export const commands = {
   calc, px,
   ascii, http, port, mime, chmod,
   cc, tel, zip,
+  opt,
   '?': help,
 }
 
