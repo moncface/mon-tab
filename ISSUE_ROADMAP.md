@@ -57,7 +57,7 @@
 
 ## Monorepo restructure — done
 - [x] moncface/mon-tab → monorepo (Chrome + CLI + VSCode + Obsidian)
-- [x] CLI共通化 — meta追加, レジストリ化, core/runner.js切り出し
+- [x] CLI shared core — add meta to commands, registry pattern, extract core/runner.js
 - [x] npm `mon-tab` v0.0.2 published (CLI: `npx mon-tab uuid`)
 - [x] Directory restructure: extension/ → root + chrome/ + icons/
 - [x] CONTRIBUTING.md
