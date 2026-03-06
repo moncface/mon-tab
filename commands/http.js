@@ -1,3 +1,12 @@
+export const meta = {
+  name: 'http',
+  desc: 'HTTP status code',
+  category: 'dict',
+  usage: 'http <code>',
+  scope: 'universal',
+  example: { input: '404', output: '404 Not Found' },
+}
+
 export const command = (code) => {
   const codes = {
     100:'Continue', 101:'Switching Protocols', 102:'Processing',

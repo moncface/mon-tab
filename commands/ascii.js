@@ -1,4 +1,11 @@
-// Converts char → decimal code, or decimal → char. Multiple chars show a table.
+export const meta = {
+  name: 'ascii',
+  desc: 'ASCII code lookup',
+  category: 'dict',
+  usage: 'ascii <char or number>',
+  scope: 'universal',
+}
+
 export const command = (t) => {
   if (!t) return 'Usage: ascii <char or number>  e.g. ascii A  or  ascii 65'
   const n = parseInt(t)

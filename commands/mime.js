@@ -1,3 +1,12 @@
+export const meta = {
+  name: 'mime',
+  desc: 'MIME type lookup',
+  category: 'dict',
+  usage: 'mime <ext>',
+  scope: 'universal',
+  example: { input: 'png', output: 'png → image/png' },
+}
+
 export const command = (ext) => {
   const types = {
     html:'text/html', htm:'text/html', css:'text/css',

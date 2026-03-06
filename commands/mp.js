@@ -1,5 +1,13 @@
-// Set a persistent variable (survives Chrome restart)
 import { setVar, isValidName } from './var-store.js'
+
+export const meta = {
+  name: 'mp',
+  desc: 'Set persistent variable',
+  category: 'variable',
+  usage: 'mp <name> <value>',
+  scope: 'universal',
+  noSubstitute: true,
+}
 
 export const command = async (arg) => {
   const parts = arg.trim().split(/\s+/)

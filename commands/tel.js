@@ -1,4 +1,11 @@
-// International dial code → country name(s). Accepts +81 or 81.
+export const meta = {
+  name: 'tel',
+  desc: 'Dial code lookup',
+  category: 'geo',
+  usage: 'tel <dial-code>',
+  scope: 'universal',
+}
+
 export const command = (t) => {
   if (!t) return 'Usage: tel <dial-code>  e.g. tel +81  or  tel 81'
   const dial = {

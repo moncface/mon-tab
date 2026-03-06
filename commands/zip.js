@@ -1,4 +1,12 @@
-// Japanese postal code → address via zipcloud.ibsnet.co.jp (free, no key)
+export const meta = {
+  name: 'zip',
+  desc: 'JP postal code → address',
+  category: 'lookup',
+  usage: 'zip <postal-code>',
+  scope: 'universal',
+  requiresNetwork: true,
+}
+
 export const command = async (code) => {
   if (!code) return 'Usage: zip <postal-code>  e.g. zip 150-0001'
   const normalized = code.replace(/-/g, '')

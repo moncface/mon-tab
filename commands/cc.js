@@ -1,4 +1,11 @@
-// ISO 3166-1 alpha-2 country code → name / currency / dial code
+export const meta = {
+  name: 'cc',
+  desc: 'Country code lookup',
+  category: 'geo',
+  usage: 'cc <code>',
+  scope: 'universal',
+}
+
 export const command = (t) => {
   if (!t) return 'Usage: cc <code>  e.g. cc JP'
   const countries = {

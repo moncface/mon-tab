@@ -1,6 +1,11 @@
-// Expression evaluator without eval (blocked in MV3 service workers).
-// Supports: + - * / ** parentheses sqrt/floor/ceil/round/abs/log
-// Constants: pi, e  |  Percent: "15% of 3980", "3980 + 10%", "3980 - 10%"
+export const meta = {
+  name: 'calc',
+  desc: 'Evaluate expression',
+  category: 'math',
+  usage: 'calc <expr>',
+  scope: 'universal',
+}
+
 export const command = (expr) => {
   if (!expr) return 'Usage: calc <expr>  e.g. calc 1920/1080  or  calc 15% of 3980'
   let s = expr.trim()

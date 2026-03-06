@@ -1,69 +1,103 @@
-// --- Generators ---
-import { command as uuid }  from './uuid.js'
-import { command as pw }    from './pw.js'
-import { command as sha }   from './sha.js'
-import { command as lorem } from './lorem.js'
+import * as uuidMod  from './uuid.js'
+import * as pwMod    from './pw.js'
+import * as shaMod   from './sha.js'
+import * as loremMod from './lorem.js'
+import * as b64Mod   from './b64.js'
+import * as b64dMod  from './b64d.js'
+import * as jwtMod   from './jwt.js'
+import * as tsMod    from './ts.js'
+import * as nowMod   from './now.js'
+import * as calMod   from './cal.js'
+import * as ageMod   from './age.js'
+import * as upperMod from './upper.js'
+import * as lowerMod from './lower.js'
+import * as slugMod  from './slug.js'
+import * as camelMod from './camel.js'
+import * as snakeMod from './snake.js'
+import * as wcMod    from './wc.js'
+import * as calcMod  from './calc.js'
+import * as pxMod    from './px.js'
+import * as asciiMod from './ascii.js'
+import * as httpMod  from './http.js'
+import * as portMod  from './port.js'
+import * as mimeMod  from './mime.js'
+import * as chmodMod from './chmod.js'
+import * as ccMod    from './cc.js'
+import * as telMod   from './tel.js'
+import * as zipMod   from './zip.js'
+import * as mMod     from './m.js'
+import * as mpMod    from './mp.js'
+import * as mlMod    from './ml.js'
+import * as mcMod    from './mc.js'
+import * as optMod   from './opt.js'
+import * as helpMod  from './help.js'
+import { setCommandList } from './help.js'
 
-// --- Encoding ---
-import { command as b64 }   from './b64.js'
-import { command as b64d }  from './b64d.js'
-import { command as jwt }   from './jwt.js'
+// --- Registry: add new commands here (1 line each) ---
+const modules = [
+  ['uuid',  uuidMod],
+  ['pw',    pwMod],
+  ['sha',   shaMod],
+  ['lorem', loremMod],
+  ['b64',   b64Mod],
+  ['b64d',  b64dMod],
+  ['jwt',   jwtMod],
+  ['ts',    tsMod],
+  ['now',   nowMod],
+  ['cal',   calMod],
+  ['age',   ageMod],
+  ['upper', upperMod],
+  ['lower', lowerMod],
+  ['slug',  slugMod],
+  ['camel', camelMod],
+  ['snake', snakeMod],
+  ['wc',    wcMod],
+  ['calc',  calcMod],
+  ['px',    pxMod],
+  ['ascii', asciiMod],
+  ['http',  httpMod],
+  ['port',  portMod],
+  ['mime',  mimeMod],
+  ['chmod', chmodMod],
+  ['cc',    ccMod],
+  ['tel',   telMod],
+  ['zip',   zipMod],
+  ['m',     mMod],
+  ['mp',    mpMod],
+  ['ml',    mlMod],
+  ['mc',    mcMod],
+  ['opt',   optMod],
+  ['?',     helpMod],
+]
 
-// --- Time ---
-import { command as ts }    from './ts.js'
-import { command as now }   from './now.js'
-import { command as cal }   from './cal.js'
-import { command as age }   from './age.js'
+// Build registry and exports
+export const registry = new Map()
+export const commands = {}
 
-// --- String transforms ---
-import { command as upper } from './upper.js'
-import { command as lower } from './lower.js'
-import { command as slug }  from './slug.js'
-import { command as camel } from './camel.js'
-import { command as snake } from './snake.js'
-import { command as wc }    from './wc.js'
+for (const [name, mod] of modules) {
+  const meta = mod.meta ?? { name, scope: 'universal' }
+  registry.set(name, { run: mod.command, meta: { name, ...meta } })
+  commands[name] = mod.command
 
-// --- Math ---
-import { command as calc }  from './calc.js'
-
-// --- CSS / units ---
-import { command as px }    from './px.js'
-
-// --- Dictionary lookups ---
-import { command as ascii } from './ascii.js'
-import { command as http }  from './http.js'
-import { command as port }  from './port.js'
-import { command as mime }  from './mime.js'
-import { command as chmod } from './chmod.js'
-
-// --- Geography ---
-import { command as cc }    from './cc.js'
-import { command as tel }   from './tel.js'
-
-// --- Lookup (API) ---
-import { command as zip }   from './zip.js'
-
-// --- Variables ---
-import { command as m }    from './m.js'
-import { command as mp }   from './mp.js'
-import { command as ml }   from './ml.js'
-import { command as mc }   from './mc.js'
-
-// --- System ---
-import { command as opt }  from './opt.js'
-import { command as help, setCommandNames } from './help.js'
-
-export const commands = {
-  uuid, pw, sha, lorem,
-  b64, b64d, jwt,
-  ts, now, cal, age,
-  upper, lower, slug, camel, snake, wc,
-  calc, px,
-  ascii, http, port, mime, chmod,
-  cc, tel, zip,
-  m, mp, ml, mc,
-  opt,
-  '?': help,
+  if (meta.aliases) {
+    for (const alias of meta.aliases) {
+      registry.set(alias, { run: mod.command, meta: { name, ...meta } })
+      commands[alias] = mod.command
+    }
+  }
 }
 
-setCommandNames(Object.keys(commands).filter(n => n !== '?'))
+// noSubstitute set (derived from meta, no more hardcoding)
+export const noSubstituteSet = new Set(
+  [...registry.entries()]
+    .filter(([, v]) => v.meta.noSubstitute)
+    .map(([k]) => k)
+)
+
+// Command list for help (excludes aliases and help itself)
+export const commandList = [...registry.entries()]
+  .filter(([name, v]) => v.meta.name === name && name !== '?')
+  .map(([name, v]) => ({ name, ...v.meta }))
+
+// Inject command list into help
+setCommandList(commandList)

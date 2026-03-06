@@ -1,4 +1,11 @@
-// Secure random password with charset filters and saved config
+export const meta = {
+  name: 'pw',
+  desc: 'Generate secure password',
+  category: 'generators',
+  usage: 'pw [length] [charset]',
+  scope: 'universal',
+}
+
 export const command = async (arg) => {
   const parts = arg.trim().split(/\s+/)
 

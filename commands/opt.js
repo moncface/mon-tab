@@ -1,4 +1,11 @@
-// Open options page in a small popup window
+export const meta = {
+  name: 'opt',
+  desc: 'Open settings',
+  category: 'system',
+  usage: 'opt',
+  scope: 'chrome',
+}
+
 export const command = async () => {
   const currentWindow = await chrome.windows.getCurrent()
   const left = Math.round((currentWindow.left || 0) + (currentWindow.width || 1200) - 520)

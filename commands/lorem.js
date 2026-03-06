@@ -1,4 +1,11 @@
-// Returns n sentences of Lorem ipsum placeholder text (max 5)
+export const meta = {
+  name: 'lorem',
+  desc: 'Lorem ipsum text',
+  category: 'generators',
+  usage: 'lorem [n]',
+  scope: 'universal',
+}
+
 export const command = (n) => {
   const s = [
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',

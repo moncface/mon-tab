@@ -1,5 +1,13 @@
-// Set or read a session variable
 import { getVar, setVar, isValidName } from './var-store.js'
+
+export const meta = {
+  name: 'm',
+  desc: 'Get/set session variable',
+  category: 'variable',
+  usage: 'm <name> [value]',
+  scope: 'universal',
+  noSubstitute: true,
+}
 
 export const command = async (arg) => {
   const parts = arg.trim().split(/\s+/)

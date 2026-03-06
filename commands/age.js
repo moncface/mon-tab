@@ -1,4 +1,11 @@
-// Age in years from a birthdate (YYYY-MM-DD)
+export const meta = {
+  name: 'age',
+  desc: 'Age from birthdate',
+  category: 'time',
+  usage: 'age <YYYY-MM-DD>',
+  scope: 'universal',
+}
+
 export const command = (t) => {
   if (!t) return 'Usage: age <YYYY-MM-DD>'
   if (!/^\d{4}-\d{2}-\d{2}$/.test(t.trim())) return 'Invalid format  e.g. age 1990-05-01'

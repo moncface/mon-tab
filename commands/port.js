@@ -1,3 +1,12 @@
+export const meta = {
+  name: 'port',
+  desc: 'Port number lookup',
+  category: 'dict',
+  usage: 'port <number>',
+  scope: 'universal',
+  example: { input: '443', output: '443 — HTTPS' },
+}
+
 export const command = (p) => {
   const ports = {
     20:'FTP data', 21:'FTP control', 22:'SSH', 23:'Telnet', 25:'SMTP',

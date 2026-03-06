@@ -1,4 +1,11 @@
-// Converts octal permission string to symbolic notation (e.g. 755 → rwxr-xr-x)
+export const meta = {
+  name: 'chmod',
+  desc: 'Octal → symbolic permission',
+  category: 'dict',
+  usage: 'chmod <octal>',
+  scope: 'universal',
+}
+
 export const command = (octal) => {
   if (!octal) return 'Usage: chmod <octal>  e.g. chmod 755'
   if (!/^[0-7]{3,4}$/.test(octal)) return 'Expected 3–4 octal digits  e.g. chmod 755'

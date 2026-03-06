@@ -1,4 +1,11 @@
-// SHA-256 hex digest via Web Crypto API
+export const meta = {
+  name: 'sha',
+  desc: 'SHA-256 hash',
+  category: 'generators',
+  usage: 'sha <text>',
+  scope: 'universal',
+}
+
 export const command = async (t) => {
   if (!t) return 'Usage: sha <text>'
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t))
