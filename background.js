@@ -2,6 +2,17 @@ import { run } from './core/runner.js'
 
 // --- Chrome Omnibox ---
 chrome.omnibox.onInputChanged.addListener((text, suggest) => {
+  const cmd = text.trim().split(/\s+/)[0]
+  // Skip side-effect commands during preview (only execute on Enter)
+  if (cmd === 'rem') {
+    const parts = text.trim().split(/\s+/).slice(1)
+    let desc = 'rem <time> <message>'
+    if (parts[0] === 'ls' || parts[0] === 'list') desc = 'List active reminders'
+    else if (parts[0] === 'clear') desc = 'Clear all reminders'
+    else if (parts.length >= 2) desc = `Reminder: ${parts[0]} — ${parts.slice(1).join(' ')}`
+    chrome.omnibox.setDefaultSuggestion({ description: escapeXml(desc) })
+    return
+  }
   run(text).then(result => {
     chrome.omnibox.setDefaultSuggestion({ description: escapeXml(result) })
   })
@@ -27,11 +38,9 @@ async function copyToClipboard(text) {
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (!alarm.name.startsWith('rem:')) return
   const message = alarm.name.replace('rem:', '')
-  chrome.notifications.create(alarm.name, {
-    type: 'basic',
-    iconUrl: 'icons/icon128.png',
-    title: 'Mon [tab] Reminder',
-    message,
+  self.registration.showNotification('Mon [tab] Reminder', {
+    body: message,
+    icon: 'icons/icon128.png',
   })
 })
 
