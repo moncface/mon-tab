@@ -49,11 +49,19 @@
   - mc — clear session / mc p — clear persistent
   - Variables usable in all commands (e.g. calc mw * mh)
 
-## v0.9.9 — shipped (current)
+## v0.9.9 — shipped
 - [x] pw enhancement
   - pw <n> <charset> — charset: an (alphanumeric), n (numbers only), a (letters only)
   - pw set — popup window (length slider, uppercase/lowercase/numbers/symbols checkboxes)
   - Settings saved to chrome.storage.local, applied to default `pw`
+
+## v0.9.10 — shipped (current)
+- [x] Use action popup for pw set / opt (auto-close on focus loss)
+- [x] Unified accent color (#7ecfff) across pw-generator and options
+- [x] rem — set a reminder (Chrome notification)
+  - rem <time> <message> — set reminder (30s, 5m, 1h, 1h30m)
+  - rem ls — list active reminders
+  - rem clear — clear all reminders
 
 ## Monorepo restructure — done
 - [x] moncface/mon-tab → monorepo (Chrome + CLI + VSCode + Obsidian)

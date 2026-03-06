@@ -8,7 +8,7 @@
 
 | Platform | Status | Install |
 |---|---|---|
-| **Chrome** | v0.9.9 | [Load unpacked](#chrome-extension) |
+| **Chrome** | v0.9.10 | [Load unpacked](#chrome-extension) |
 | **CLI** | v0.1.0 | `npm i -g mon-tab` |
 | **VSCode** | planned | — |
 | **Obsidian** | planned | — |
@@ -70,6 +70,8 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `cc JP` | `Japan / JPY / +81` |
 | `tel +81` | `+81 — Japan` |
 | `zip 150-0001` | `東京都渋谷区神宮前` |
+| `rem 30m review PR` | reminder in 30 min (Chrome) |
+| `rem ls` | list active reminders |
 | `m w 1920` | set variable `w = 1920` |
 | `calc mw * 2` | `1920 * 2 = 3840` |
 | `?` | list all commands |

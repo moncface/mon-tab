@@ -23,6 +23,18 @@ async function copyToClipboard(text) {
   setTimeout(() => chrome.offscreen.closeDocument().catch(() => {}), 300)
 }
 
+// --- Reminder notifications ---
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (!alarm.name.startsWith('rem:')) return
+  const message = alarm.name.replace('rem:', '')
+  chrome.notifications.create(alarm.name, {
+    type: 'basic',
+    iconUrl: 'icons/icon128.png',
+    title: 'Mon [tab] Reminder',
+    message,
+  })
+})
+
 function escapeXml(s) {
   return String(s)
     .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\uD800-\uDFFF]/g, '')

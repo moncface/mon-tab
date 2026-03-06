@@ -29,6 +29,7 @@ import * as mMod     from './m.js'
 import * as mpMod    from './mp.js'
 import * as mlMod    from './ml.js'
 import * as mcMod    from './mc.js'
+import * as remMod   from './rem.js'
 import * as optMod   from './opt.js'
 import * as helpMod  from './help.js'
 import { setCommandList } from './help.js'
@@ -66,6 +67,7 @@ const modules = [
   ['mp',    mpMod],
   ['ml',    mlMod],
   ['mc',    mcMod],
+  ['rem',   remMod],
   ['opt',   optMod],
   ['?',     helpMod],
 ]
