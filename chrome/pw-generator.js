@@ -69,6 +69,6 @@ document.getElementById('copy').addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(passwordEl.textContent)
     btn.classList.add('copied')
-    setTimeout(() => btn.classList.remove('copied'), 1000)
+    setTimeout(() => window.close(), 800)
   } catch {}
 })

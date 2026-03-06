@@ -8,6 +8,7 @@ body {
   font-family: system-ui, -apple-system, sans-serif;
   background: #1a1a2e;
   color: #e0e0e0;
+  min-width: 480px;
   max-width: 560px;
   margin: 0 auto;
   padding: 40px 32px;

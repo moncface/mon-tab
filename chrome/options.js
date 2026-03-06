@@ -12,5 +12,6 @@ chrome.storage.local.get('varStorage', ({ varStorage }) => {
 document.querySelectorAll('input[name="varStorage"]').forEach(radio => {
   radio.addEventListener('change', (e) => {
     chrome.storage.local.set({ varStorage: e.target.value })
+    setTimeout(() => window.close(), 800)
   })
 })

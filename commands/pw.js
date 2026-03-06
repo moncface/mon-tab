@@ -9,18 +9,11 @@ export const meta = {
 export const command = async (arg) => {
   const parts = arg.trim().split(/\s+/)
 
-  // pw set → open popup
+  // pw set → open popup (action popup auto-closes on focus loss)
   if (parts[0] === 'set') {
-    const win = await chrome.windows.getCurrent()
-    const left = Math.round((win.left || 0) + (win.width || 1200) - 520)
-    const top = (win.top || 0) + 100
-    await chrome.windows.create({
-      url: chrome.runtime.getURL('chrome/pw-generator.html'),
-      type: 'popup',
-      width: 480,
-      height: 400,
-      top, left
-    })
+    await chrome.action.setPopup({ popup: 'chrome/pw-generator.html' })
+    await chrome.action.openPopup()
+    chrome.action.setPopup({ popup: '' })
     return 'Opening password settings...'
   }
 

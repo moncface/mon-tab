@@ -40,7 +40,7 @@ section {
 #password {
   font-family: 'SF Mono', 'Consolas', monospace;
   font-size: 20px;
-  color: #00ff88;
+  color: #7ecfff;
   word-break: break-all;
   flex: 1;
   user-select: all;
@@ -72,7 +72,7 @@ section {
 }
 
 .buttons button.copied {
-  color: #00ff88;
+  color: #7ecfff;
 }
 
 h2 {
@@ -99,7 +99,7 @@ h2 {
 .length-value {
   font-family: 'SF Mono', 'Consolas', monospace;
   font-size: 14px;
-  color: #00ff88;
+  color: #7ecfff;
 }
 
 input[type="range"] {
@@ -117,7 +117,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #00ff88;
+  background: #7ecfff;
   cursor: pointer;
 }
 
@@ -137,7 +137,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .checkboxes input[type="checkbox"] {
-  accent-color: #00ff88;
+  accent-color: #7ecfff;
   width: 16px;
   height: 16px;
 }
