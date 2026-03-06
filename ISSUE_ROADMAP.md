@@ -55,15 +55,19 @@
   - pw set — popup window (length slider, uppercase/lowercase/numbers/symbols checkboxes)
   - Settings saved to chrome.storage.local, applied to default `pw`
 
-## Repo restructure — done
-- [x] moncface/mon → README gateway
-- [x] moncface/mon-tab → Chrome extension (this repo)
+## Monorepo restructure — done
+- [x] moncface/mon-tab → monorepo (Chrome + CLI + VSCode + Obsidian)
+- [x] CLI共通化 — meta追加, レジストリ化, core/runner.js切り出し
+- [x] npm `mon-tab` v0.0.2 published (CLI: `npx mon-tab uuid`)
+- [x] Directory restructure: extension/ → root + chrome/ + icons/
+- [x] CONTRIBUTING.md
 
 ## v1.0.0 — HackerNews launch
 - [ ] Command suggestions (prefix match)
 - [ ] rx — regex tester (popup window)
 - [ ] math.js integration for calc
 - [ ] 70 commands target
+- [ ] npm `mon-tab` v1.0 (CLI)
 
 ## v1.5 — global / API
 - [ ] zip (global)
@@ -73,6 +77,6 @@
 - [ ] wx — weather
 - [ ] log — command history viewer (popup window)
 
-## v2.0 — CLI
-- [ ] @moncface/mon CLI package
-- [ ] Core shared logic extraction
+## v2.0 — multi-platform
+- [ ] VSCode extension
+- [ ] Obsidian plugin

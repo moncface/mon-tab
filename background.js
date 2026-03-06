@@ -15,7 +15,7 @@ chrome.omnibox.onInputEntered.addListener(async (text) => {
 // --- Chrome-specific utilities ---
 async function copyToClipboard(text) {
   await chrome.offscreen.createDocument({
-    url: chrome.runtime.getURL('offscreen.html'),
+    url: chrome.runtime.getURL('chrome/offscreen.html'),
     reasons: ['CLIPBOARD'],
     justification: 'Copy command result to clipboard',
   }).catch(() => {}) // already open = fine

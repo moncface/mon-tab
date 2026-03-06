@@ -15,7 +15,7 @@ export const command = async (arg) => {
     const left = Math.round((win.left || 0) + (win.width || 1200) - 520)
     const top = (win.top || 0) + 100
     await chrome.windows.create({
-      url: chrome.runtime.getURL('pw-generator.html'),
+      url: chrome.runtime.getURL('chrome/pw-generator.html'),
       type: 'popup',
       width: 480,
       height: 400,

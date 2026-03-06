@@ -1,0 +1,11 @@
+node_modules/
+*.log
+
+# Obsidian notes (tracked in Obsidian vault, not in git)
+*.md
+!README.md
+!CONTRIBUTING.md
+!ISSUE_ROADMAP.md
+
+# Secrets
+Accsess token.txt
