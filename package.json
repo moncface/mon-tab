@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "description": "Developer tools in your terminal. CLI companion for Mon [tab] Chrome extension.",
   "type": "module",
+  "bin": {
+    "mon": "./cli/bin/mon-tab.js",
+    "mon-tab": "./cli/bin/mon-tab.js"
+  },
   "files": [
+    "cli/bin/",
     "core/",
     "commands/"
   ],

@@ -70,6 +70,7 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 mon-tab/
 ├── commands/       ← shared commands (1 file = 1 command)
 ├── core/           ← shared core (runner.js)
+├── cli/bin/        ← CLI entry point (npm bin)
 ├── chrome/         ← Chrome-specific UI
 ├── icons/          ← extension icons
 └── manifest.json   ← Chrome extension manifest
