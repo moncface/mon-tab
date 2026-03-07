@@ -78,6 +78,10 @@ Opening a new tab to generate a UUID, encode base64, or look up an HTTP status c
 
 70+ commands planned. See [ISSUE_ROADMAP.md](ISSUE_ROADMAP.md).
 
+## Privacy
+
+All commands run locally in your browser. No data is collected or sent to external servers — except `zip`, which queries a postal code API (`zipcloud.ibsnet.co.jp`) with the code you enter. No analytics, no tracking, no accounts.
+
 ## Support
 
 If mon[tab] saves you time:
