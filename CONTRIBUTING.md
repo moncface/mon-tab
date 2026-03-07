@@ -19,10 +19,6 @@ mon-tab/
 │   ├── options.*        ← Settings page
 │   └── pw-generator.*   ← Password generator popup
 ├── icons/               ← Extension icons (16/48/128px)
-├── cli/                 ← CLI entry point
-│   └── bin/mon-tab.js   ← `npx mon-tab <cmd>` or `mon <cmd>`
-├── vscode/              ← VSCode extension (planned)
-├── obsidian/            ← Obsidian plugin (planned)
 ├── package.json         ← npm publish config
 └── ISSUE_ROADMAP.md     ← Version history + planned features
 ```
@@ -68,7 +64,7 @@ That's it. The registry auto-generates help text, CLI support, and everything el
 ### Test locally
 
 ```bash
-node cli/bin/mon-tab.js your-command test-input
+npx mon-tab your-command test-input
 ```
 
 ## Meta Fields Reference
@@ -86,12 +82,15 @@ node cli/bin/mon-tab.js your-command test-input
 
 ## Architecture
 
-**Shared core** (`core/runner.js` + `commands/`) is platform-neutral. Each platform has a thin adapter:
+**Shared core** (`core/runner.js` + `commands/`) is platform-neutral. This repo is the Chrome adapter:
 
 - **Chrome**: `background.js` — handles omnibox events + clipboard
-- **CLI**: `cli/bin/mon-tab.js` — parses argv, prints to stdout
-- **VSCode**: `vscode/` (planned) — command palette integration
-- **Obsidian**: `obsidian/` (planned) — global hotkey + command input
+
+Other platforms live in separate repositories and import `core/` + `commands/` via the `mon-tab` npm package:
+
+- **CLI**: [mon-cli](https://github.com/moncface/mon-cli)
+- **VSCode**: mon-tab-vscode (planned)
+- **Obsidian**: mon-tab-obsidian (planned)
 
 Commands should NOT use `chrome.*` APIs directly (use `scope: 'chrome'` for Chrome-only commands). The `var-store.js` handles Chrome/Node differences with try/catch graceful degradation.
 
@@ -100,5 +99,5 @@ Commands should NOT use `chrome.*` APIs directly (use `scope: 'chrome'` for Chro
 The project root doubles as the Chrome extension root (`manifest.json` is at root). To package for Chrome Web Store:
 
 ```bash
-zip -r mon-tab.zip . -x ".git/*" "cli/*" "vscode/*" "obsidian/*" "node_modules/*" ".gitignore" "package.json" "CONTRIBUTING.md" "*.log"
+zip -r mon-tab.zip . -x ".git/*" "node_modules/*" ".gitignore" "package.json" "CONTRIBUTING.md" "*.log"
 ```

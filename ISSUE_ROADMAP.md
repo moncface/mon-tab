@@ -63,11 +63,11 @@
   - rem ls — list active reminders
   - rem clear — clear all reminders
 
-## Monorepo restructure — done
-- [x] moncface/mon-tab → monorepo (Chrome + CLI + VSCode + Obsidian)
-- [x] CLI shared core — add meta to commands, registry pattern, extract core/runner.js
-- [x] npm `mon-tab` v0.0.2 published (CLI: `npx mon-tab uuid`)
+## Multi-repo restructure — done
+- [x] Shared core — add meta to commands, registry pattern, extract core/runner.js
+- [x] npm `mon-tab` v0.1.0 published (core + commands available as npm package)
 - [x] Directory restructure: extension/ → root + chrome/ + icons/
+- [x] CLI split to separate repo (moncface/mon-cli)
 - [x] CONTRIBUTING.md
 
 ## v1.0.0 — HackerNews launch

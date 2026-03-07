@@ -1,36 +1,10 @@
 # mon[tab]
 
-> Dev tools in your address bar & terminal. Type `mon` — get results.
+> Dev tools in your address bar. Type `mon` + Tab — get results.
 >
 > by [moncface](https://github.com/moncface)
 
-## Platforms
-
-| Platform | Status | Install |
-|---|---|---|
-| **Chrome** | v0.9.10 | [Load unpacked](#chrome-extension) |
-| **CLI** | v0.1.0 | `npm i -g mon-tab` |
-| **VSCode** | planned | — |
-| **Obsidian** | planned | — |
-
-## CLI
-
-```bash
-npx mon-tab uuid          # 550e8400-e29b-41d4-a716-...
-npx mon-tab b64 hello     # aGVsbG8=
-npx mon-tab calc 1920/1080  # 1920/1080 = 1.777777778
-npx mon-tab ?             # list all commands
-```
-
-Or install globally:
-
-```bash
-npm i -g mon-tab
-mon uuid
-mon b64 hello
-```
-
-## Chrome Extension
+## Install
 
 1. Clone this repo
 2. Open `chrome://extensions` → Enable **Developer Mode** → **Load unpacked** → select this folder
@@ -83,11 +57,11 @@ mon-tab/
 ├── commands/       ← shared commands (1 file = 1 command)
 ├── core/           ← shared core (runner.js)
 ├── chrome/         ← Chrome-specific UI
-├── cli/            ← CLI entry point
-├── vscode/         ← VSCode extension (planned)
-├── obsidian/       ← Obsidian plugin (planned)
+├── icons/          ← extension icons
 └── manifest.json   ← Chrome extension manifest
 ```
+
+Also available as CLI: see [mon-cli](https://github.com/moncface/mon-cli).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add commands.
 
