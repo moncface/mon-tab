@@ -63,6 +63,11 @@
   - rem ls — list active reminders
   - rem clear — clear all reminders
 
+## v0.9.11 — shipped
+- [x] rand — random number generator
+- [x] em — emoji lookup (+ Gitmoji)
+- [x] ratio — aspect ratio calculator
+
 ## Multi-repo restructure — done
 - [x] Shared core — add meta to commands, registry pattern, extract core/runner.js
 - [x] npm `mon-tab` v0.1.0 published (core + commands available as npm package)
@@ -70,7 +75,7 @@
 - [x] CLI split to separate repo (moncface/mon-cli)
 - [x] CONTRIBUTING.md
 
-## v1.0.0 — HackerNews launch
+## v1.0.0 — public release
 - [ ] Command suggestions (prefix match)
 - [ ] rx — regex tester (popup window)
 - [ ] math.js integration for calc

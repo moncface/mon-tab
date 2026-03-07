@@ -44,6 +44,11 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `cc JP` | `Japan / JPY / +81` |
 | `tel +81` | `+81 — Japan` |
 | `zip 150-0001` | `東京都渋谷区神宮前` |
+| `rand` | `0.7382...` (0–1) |
+| `rand 1 6` | `3` (dice roll) |
+| `em fire` | `🔥` |
+| `em feat` | `✨` (Gitmoji) |
+| `ratio 16 9 1920` | `1080` |
 | `rem 30m review PR` | reminder in 30 min (Chrome) |
 | `rem ls` | list active reminders |
 | `m w 1920` | set variable `w = 1920` |

@@ -29,6 +29,9 @@ import * as mMod     from './m.js'
 import * as mpMod    from './mp.js'
 import * as mlMod    from './ml.js'
 import * as mcMod    from './mc.js'
+import * as randMod  from './rand.js'
+import * as emMod    from './em.js'
+import * as ratioMod from './ratio.js'
 import * as remMod   from './rem.js'
 import * as optMod   from './opt.js'
 import * as helpMod  from './help.js'
@@ -67,6 +70,9 @@ const modules = [
   ['mp',    mpMod],
   ['ml',    mlMod],
   ['mc',    mcMod],
+  ['rand',  randMod],
+  ['em',    emMod],
+  ['ratio', ratioMod],
   ['rem',   remMod],
   ['opt',   optMod],
   ['?',     helpMod],
