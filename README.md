@@ -1,10 +1,19 @@
 # mon[tab]
 
-> Dev tools in your address bar. Type `mon` + Tab — get results.
+> Dev tools in your address bar & terminal. Type `mon` — get results.
 >
 > by [moncface](https://github.com/moncface)
 
 ## Install
+
+### CLI
+
+```bash
+npm install -g mon-tab
+mon uuid
+```
+
+### Chrome Extension
 
 1. Clone this repo
 2. Open `chrome://extensions` → Enable **Developer Mode** → **Load unpacked** → select this folder
@@ -66,7 +75,7 @@ mon-tab/
 └── manifest.json   ← Chrome extension manifest
 ```
 
-Also available as CLI: see [mon-cli](https://github.com/moncface/mon-cli).
+CLI wrapper: [mon-cli](https://github.com/moncface/mon-cli).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add commands.
 
