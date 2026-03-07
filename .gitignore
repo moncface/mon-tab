@@ -2,6 +2,7 @@ node_modules/
 *.log
 
 # Obsidian notes (tracked in Obsidian vault, not in git)
+docs/
 *.md
 !README.md
 !CONTRIBUTING.md
