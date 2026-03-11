@@ -13,7 +13,15 @@
     "commands/",
     "skills/"
   ],
-  "keywords": ["cli", "developer-tools", "utility", "uuid", "base64", "hash", "calculator"],
+  "keywords": [
+    "cli",
+    "developer-tools",
+    "utility",
+    "uuid",
+    "base64",
+    "hash",
+    "calculator"
+  ],
   "author": "moncface",
   "license": "MIT",
   "repository": {
@@ -23,5 +31,8 @@
   "homepage": "https://github.com/moncface/mon-tab",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "mathjs": "^15.1.1"
   }
 }

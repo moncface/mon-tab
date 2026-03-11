@@ -2,6 +2,7 @@
 import { run } from '../../core/runner.js'
 import { registry } from '../../commands/index.js'
 import { initFileStorage } from '../../commands/var-store.js'
+import { setEvaluator } from '../../commands/calc.js'
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { tmpdir, homedir } from 'node:os'
 import { join } from 'node:path'
@@ -14,6 +15,12 @@ initFileStorage({
   persistentDir,
   persistentPath: join(persistentDir, 'persistent.json'),
 })
+
+// Inject math.js evaluator into calc (Chrome uses built-in parser)
+try {
+  const { evaluate } = await import('mathjs')
+  setEvaluator(evaluate)
+} catch {}
 
 // Register real CLI-only commands (stubs in index.js for Chrome safety)
 const [ldMod, lvMod, lcMod] = await Promise.all([

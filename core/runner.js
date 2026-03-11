@@ -10,7 +10,13 @@ export async function run(input) {
   const rawArg = spaceIdx === -1 ? '' : trimmed.slice(spaceIdx + 1)
 
   const entry = registry.get(cmd)
-  if (!entry) return `Unknown: "${cmd}" — try: ?`
+  if (!entry) {
+    const matches = [...registry.keys()]
+      .filter(k => k.startsWith(cmd) && registry.get(k).meta.name === k)
+      .slice(0, 5)
+    if (matches.length) return `Unknown: "${cmd}" — did you mean: ${matches.join(', ')}?`
+    return `Unknown: "${cmd}" — try: ?`
+  }
 
   const inChrome = typeof globalThis.chrome !== 'undefined' && !!globalThis.chrome.runtime
   if (inChrome && entry.meta.scope === 'cli') return `"${cmd}" is CLI-only — run: mon ${cmd}`

@@ -46,6 +46,7 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `wc hello world` | `2 words, 11 chars` |
 | `calc 1920/1080` | `1920/1080 = 1.777777778` |
 | `calc sqrt(144)` | `sqrt(144) = 12` |
+| `calc 2 inch to cm` | `5.08 cm` (CLI, via math.js) |
 | `px 24` | `1.5rem` |
 | `ascii A` | `65` |
 | `http 404` | `404 Not Found` |

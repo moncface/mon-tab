@@ -88,18 +88,21 @@
 
 ## v1.0.0 — public release
 - [ ] Command suggestions (prefix match)
-- [ ] rx — regex tester (popup window)
 - [ ] math.js integration for calc
 
-## v1.1.0 — command additions
-- [ ] 70 commands target
+## v1.1.0 — validation commands
+- [ ] rx — regex tester (popup window)
+- [ ] json — JSON validator / formatter
+- [ ] url — URL parser
+- [ ] email — email validator
+- [ ] ip — IP address info
+- [ ] semver — semver parser / compare
 
 ## v1.2.0 — API / network commands
-- [ ] zip (global)
-- [ ] npm — latest version
-- [ ] dns — DNS lookup
 - [ ] fx — currency exchange
 - [ ] wx — weather
+- [ ] dns — DNS lookup
+- [ ] npm — latest version
 - [ ] log — command history viewer (popup window)
 
 ## v2.0.0 — multi-platform
