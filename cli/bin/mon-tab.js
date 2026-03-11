@@ -1,13 +1,33 @@
 #!/usr/bin/env node
 import { run } from '../../core/runner.js'
+import { readFileSync } from 'node:fs'
+
+const flag = process.argv[2]
+
+if (flag === '--version' || flag === '-v') {
+  const pkg = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8'))
+  console.log(pkg.version)
+  process.exit(0)
+}
+
+function usage() {
+  console.log('Mon [tab] CLI — developer tools in your terminal')
+  console.log('Usage: mon <command> [args]')
+  console.log('       mon ? — list all commands')
+  console.log('       mon uuid — generate UUID')
+  console.log('       mon b64 hello — Base64 encode')
+  console.log('       mon calc 1920/1080 — evaluate expression')
+  console.log('       echo "b64 hello" | mon — pipe stdin')
+  process.exit(0)
+}
+
+if (flag === '--help' || flag === '-h') usage()
 
 let input
 
 if (process.argv.length > 2) {
-  // Args exist — use them, never touch stdin
   input = process.argv.slice(2).join(' ')
 } else if (!process.stdin.isTTY) {
-  // No args + stdin is piped — read stdin
   const chunks = []
   for await (const chunk of process.stdin) {
     chunks.push(chunk)
@@ -18,15 +38,7 @@ if (process.argv.length > 2) {
     process.exit(1)
   }
 } else {
-  // No args + TTY — show usage
-  console.log('Mon [tab] CLI — developer tools in your terminal')
-  console.log('Usage: mon <command> [args]')
-  console.log('       mon ? — list all commands')
-  console.log('       mon uuid — generate UUID')
-  console.log('       mon b64 hello — Base64 encode')
-  console.log('       mon calc 1920/1080 — evaluate expression')
-  console.log('       echo "hello" | mon b64 — pipe stdin')
-  process.exit(0)
+  usage()
 }
 
 try {
