@@ -35,7 +35,7 @@ Copy `commands/_template.js` and fill in:
 export const meta = {
   name: 'your-command',
   desc: 'What it does (shown in help)',
-  category: 'encoding',       // generators | encoding | time | string | math | css | dict | geo | lookup | variable | system
+  category: 'encoding',       // generators | encoding | time | string | math | css | dict | geo | lookup | validation | variable | lndf | system
   usage: 'your-command <arg>',
   scope: 'universal',         // universal | chrome | cli
 }
@@ -79,6 +79,7 @@ npx mon-tab your-command test-input
 | `example` | no | `{ input, output }` for docs |
 | `noSubstitute` | no | `true` to skip variable substitution |
 | `aliases` | no | Array of alias names |
+| `trimArg` | no | `false` to preserve whitespace in input (default: `true`) |
 
 ## Architecture
 
@@ -92,12 +93,12 @@ Other platforms live in separate repositories and import `core/` + `commands/` v
 - **VSCode**: mon-tab-vscode (planned)
 - **Obsidian**: mon-tab-obsidian (planned)
 
-Commands should NOT use `chrome.*` APIs directly (use `scope: 'chrome'` for Chrome-only commands). The `var-store.js` handles Chrome/Node differences with try/catch graceful degradation.
+Commands should NOT use `chrome.*` APIs directly (use `scope: 'chrome'` for Chrome-only commands). Platform-specific dependencies use the injection pattern — export a `setXxx()` function, and the platform entry point injects the implementation (see `var-store.js` and `calc.js` for examples).
 
 ## Chrome Web Store Packaging
 
 The project root doubles as the Chrome extension root (`manifest.json` is at root). To package for Chrome Web Store:
 
 ```bash
-zip -r mon-tab.zip . -x ".git/*" "node_modules/*" ".gitignore" "package.json" "CONTRIBUTING.md" "*.log"
+zip -r mon-tab.zip . -x ".git/*" "node_modules/*" "skills/*" "cli/*" "test/*" ".gitignore" ".lndf/*" "package.json" "package-lock.json" "CONTRIBUTING.md" "*.log"
 ```
