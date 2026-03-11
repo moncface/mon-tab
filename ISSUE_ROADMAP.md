@@ -98,6 +98,7 @@
 - [x] email — email validator
 - [x] ip — IP address info
 - [x] sv / semver — semver parser / compare
+- [x] npm v0.4.0 published
 
 ## v1.2.0 — API / network commands
 - [ ] fx — currency exchange
