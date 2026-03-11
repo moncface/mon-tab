@@ -87,8 +87,9 @@
 - [x] npm v0.3.2 published
 
 ## v1.0.0 — public release
-- [ ] Command suggestions (prefix match)
-- [ ] math.js integration for calc
+- [x] Command suggestions (prefix match)
+- [x] math.js integration for calc (CLI injection + built-in parser enhanced)
+- [x] npm v0.3.3 published
 
 ## v1.1.0 — validation commands
 - [ ] rx — regex tester (popup window)
