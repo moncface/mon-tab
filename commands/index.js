@@ -34,9 +34,16 @@ import * as emMod    from './em.js'
 import * as ratioMod from './ratio.js'
 import * as remMod   from './rem.js'
 import * as optMod   from './opt.js'
-import * as ldMod    from './ld.js'
-import * as lvMod    from './lv.js'
-import * as lcMod    from './lc.js'
+// CLI-only stubs — real implementations loaded by CLI entry point
+// Chrome cannot load node:fs/path/child_process from ld.js/lv.js/lc.js
+const cliStub = (name, desc) => ({
+  meta: { name, desc, category: 'lndf', usage: name, scope: 'cli' },
+  command: () => `"${name}" is CLI-only — run: mon ${name}`,
+})
+const ldMod = cliStub('ld', '.lndf distillation (generate project snapshot)')
+const lvMod = cliStub('lv', 'Show .lndf distillation state')
+const lcMod = cliStub('lc', '.lndf distillation + clipboard copy')
+
 import * as helpMod  from './help.js'
 import { setCommandList } from './help.js'
 

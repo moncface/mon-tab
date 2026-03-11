@@ -1,6 +1,17 @@
 #!/usr/bin/env node
 import { run } from '../../core/runner.js'
+import { registry } from '../../commands/index.js'
 import { readFileSync } from 'node:fs'
+
+// Register real CLI-only commands (stubs in index.js for Chrome safety)
+const [ldMod, lvMod, lcMod] = await Promise.all([
+  import('../../commands/ld.js'),
+  import('../../commands/lv.js'),
+  import('../../commands/lc.js'),
+])
+for (const [name, mod] of [['ld', ldMod], ['lv', lvMod], ['lc', lcMod]]) {
+  registry.set(name, { run: mod.command, meta: { name, ...mod.meta } })
+}
 
 const flag = process.argv[2]
 
