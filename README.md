@@ -11,6 +11,8 @@
 ```bash
 npm install -g mon-tab
 mon uuid
+mon --version
+echo "b64 hello" | mon
 ```
 
 ### Chrome Extension
