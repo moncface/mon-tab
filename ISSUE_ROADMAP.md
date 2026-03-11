@@ -75,12 +75,22 @@
 - [x] CLI split to separate repo (moncface/mon-cli)
 - [x] CONTRIBUTING.md
 
+## CLI v0.3 + Chrome refactor — done
+- [x] .lndf distillation commands (ld, lv, lc) — CLI-only
+- [x] SKILL.md for AI tools
+- [x] Categorized help output
+- [x] stdin pipe support (`echo "b64 hello" | mon`)
+- [x] Exit codes (0 success, 1 error)
+- [x] --version / --help flags
+- [x] Chrome refactor: CLI-only command stubs in index.js
+- [x] Chrome refactor: var-store.js injection pattern (zero node:* imports)
+- [x] npm v0.3.2 published
+
 ## v1.0.0 — public release
 - [ ] Command suggestions (prefix match)
 - [ ] rx — regex tester (popup window)
 - [ ] math.js integration for calc
 - [ ] 70 commands target
-- [ ] npm `mon-tab` v1.0 (CLI)
 
 ## v1.5 — global / API
 - [ ] zip (global)

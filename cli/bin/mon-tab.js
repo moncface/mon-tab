@@ -1,7 +1,19 @@
 #!/usr/bin/env node
 import { run } from '../../core/runner.js'
 import { registry } from '../../commands/index.js'
-import { readFileSync } from 'node:fs'
+import { initFileStorage } from '../../commands/var-store.js'
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { tmpdir, homedir } from 'node:os'
+import { join } from 'node:path'
+
+// Inject Node.js file I/O into var-store (shared module has zero node:* imports)
+const persistentDir = join(homedir(), '.mon-tab')
+initFileStorage({
+  readFileSync, writeFileSync, mkdirSync,
+  sessionPath: join(tmpdir(), 'mon-tab-session.json'),
+  persistentDir,
+  persistentPath: join(persistentDir, 'persistent.json'),
+})
 
 // Register real CLI-only commands (stubs in index.js for Chrome safety)
 const [ldMod, lvMod, lcMod] = await Promise.all([

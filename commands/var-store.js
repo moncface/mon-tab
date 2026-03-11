@@ -1,25 +1,29 @@
 // Shared variable storage module
 // Chrome: session=in-memory, persistent=chrome.storage.local
-// CLI:    session=tmpdir JSON, persistent=homedir JSON
-
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
-import { tmpdir, homedir } from 'node:os'
-import { join } from 'node:path'
+// CLI:    session=tmpdir JSON, persistent=homedir JSON (injected by CLI entry point)
 
 const isCLI = typeof globalThis.chrome === 'undefined' || !globalThis.chrome?.storage
 
-// --- File-based storage for CLI ---
-const SESSION_PATH = join(tmpdir(), 'mon-tab-session.json')
-const PERSISTENT_DIR = join(homedir(), '.mon-tab')
-const PERSISTENT_PATH = join(PERSISTENT_DIR, 'persistent.json')
+// --- File I/O injected by CLI entry point (zero node:* imports here) ---
+let _readFile, _writeFile, _mkdirSync
+let _SESSION_PATH, _PERSISTENT_DIR, _PERSISTENT_PATH
 
-function readJSON(path) {
-  try { return JSON.parse(readFileSync(path, 'utf8')) } catch { return {} }
+export function initFileStorage({ readFileSync, writeFileSync, mkdirSync, sessionPath, persistentDir, persistentPath }) {
+  _readFile = readFileSync
+  _writeFile = writeFileSync
+  _mkdirSync = mkdirSync
+  _SESSION_PATH = sessionPath
+  _PERSISTENT_DIR = persistentDir
+  _PERSISTENT_PATH = persistentPath
 }
 
-function writeJSON(path, data) {
-  if (path === PERSISTENT_PATH) mkdirSync(PERSISTENT_DIR, { recursive: true })
-  writeFileSync(path, JSON.stringify(data, null, 2))
+function readJSON(p) {
+  try { return JSON.parse(_readFile(p, 'utf8')) } catch { return {} }
+}
+
+function writeJSON(p, data) {
+  if (p === _PERSISTENT_PATH) _mkdirSync(_PERSISTENT_DIR, { recursive: true })
+  _writeFile(p, JSON.stringify(data, null, 2))
 }
 
 // --- In-memory storage for Chrome extension ---
@@ -30,7 +34,7 @@ const VALID_NAME = /^[a-zA-Z_]\w{0,29}$/
 export function isValidName(name) { return VALID_NAME.test(name) }
 
 async function getPersistent() {
-  if (isCLI) return readJSON(PERSISTENT_PATH)
+  if (isCLI) return readJSON(_PERSISTENT_PATH)
   try {
     const { vars_persistent = {} } = await chrome.storage.local.get('vars_persistent')
     return vars_persistent
@@ -38,19 +42,19 @@ async function getPersistent() {
 }
 
 async function savePersistent(vars) {
-  if (isCLI) { writeJSON(PERSISTENT_PATH, vars); return }
+  if (isCLI) { writeJSON(_PERSISTENT_PATH, vars); return }
   try { await chrome.storage.local.set({ vars_persistent: vars }) } catch {}
 }
 
 function getSession() {
-  return isCLI ? readJSON(SESSION_PATH) : { ...sessionVars }
+  return isCLI ? readJSON(_SESSION_PATH) : { ...sessionVars }
 }
 
 function setSession(name, value) {
   if (isCLI) {
-    const vars = readJSON(SESSION_PATH)
+    const vars = readJSON(_SESSION_PATH)
     vars[name] = value
-    writeJSON(SESSION_PATH, vars)
+    writeJSON(_SESSION_PATH, vars)
   } else {
     sessionVars[name] = value
   }
@@ -58,9 +62,9 @@ function setSession(name, value) {
 
 function deleteSession(name) {
   if (isCLI) {
-    const vars = readJSON(SESSION_PATH)
+    const vars = readJSON(_SESSION_PATH)
     delete vars[name]
-    writeJSON(SESSION_PATH, vars)
+    writeJSON(_SESSION_PATH, vars)
   } else {
     delete sessionVars[name]
   }
@@ -68,7 +72,7 @@ function deleteSession(name) {
 
 function clearSession() {
   if (isCLI) {
-    writeJSON(SESSION_PATH, {})
+    writeJSON(_SESSION_PATH, {})
   } else {
     Object.keys(sessionVars).forEach(k => delete sessionVars[k])
   }
