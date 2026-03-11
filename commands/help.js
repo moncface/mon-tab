@@ -26,15 +26,18 @@ const categoryOrder = [
 ]
 
 export const command = (arg) => {
+  const inChrome = typeof globalThis.chrome !== 'undefined' && !!globalThis.chrome.runtime
+  const visible = inChrome ? _commandList.filter(c => c.scope !== 'cli') : _commandList
+
   if (arg) {
-    const list = _commandList.filter(c => c.category === arg)
+    const list = visible.filter(c => c.category === arg)
     if (!list.length) return `No commands in category "${arg}"`
     return list.map(c => `${c.name} — ${c.desc}`).join(' | ')
   }
 
   const lines = []
   const grouped = {}
-  for (const c of _commandList) {
+  for (const c of visible) {
     const cat = c.category || 'other'
     if (!grouped[cat]) grouped[cat] = []
     grouped[cat].push(c)

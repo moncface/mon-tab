@@ -12,6 +12,9 @@ export async function run(input) {
   const entry = registry.get(cmd)
   if (!entry) return `Unknown: "${cmd}" — try: ?`
 
+  const inChrome = typeof globalThis.chrome !== 'undefined' && !!globalThis.chrome.runtime
+  if (inChrome && entry.meta.scope === 'cli') return `"${cmd}" is CLI-only — run: mon ${cmd}`
+
   const arg = entry.meta.trimArg !== false ? rawArg.trimStart() : rawArg
   const finalArg = noSubstituteSet.has(cmd) ? arg : await substituteVars(arg)
   return (await entry.run(finalArg)) || '(empty result)'
