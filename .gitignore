@@ -1,5 +1,6 @@
 node_modules/
 *.log
+.lndf/
 
 # Obsidian notes (tracked in Obsidian vault, not in git)
 docs/
@@ -7,6 +8,7 @@ docs/
 !README.md
 !CONTRIBUTING.md
 !ISSUE_ROADMAP.md
+!skills/lndf/SKILL.md
 
 # Secrets
 Accsess token.txt

@@ -34,6 +34,9 @@ import * as emMod    from './em.js'
 import * as ratioMod from './ratio.js'
 import * as remMod   from './rem.js'
 import * as optMod   from './opt.js'
+import * as ldMod    from './ld.js'
+import * as lvMod    from './lv.js'
+import * as lcMod    from './lc.js'
 import * as helpMod  from './help.js'
 import { setCommandList } from './help.js'
 
@@ -75,6 +78,9 @@ const modules = [
   ['ratio', ratioMod],
   ['rem',   remMod],
   ['opt',   optMod],
+  ['ld',    ldMod],
+  ['lv',    lvMod],
+  ['lc',    lcMod],
   ['?',     helpMod],
 ]
 

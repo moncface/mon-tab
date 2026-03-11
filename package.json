@@ -10,7 +10,8 @@
   "files": [
     "cli/bin/",
     "core/",
-    "commands/"
+    "commands/",
+    "skills/"
   ],
   "keywords": ["cli", "developer-tools", "utility", "uuid", "base64", "hash", "calculator"],
   "author": "moncface",

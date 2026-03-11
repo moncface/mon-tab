@@ -62,6 +62,9 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `rem ls` | list active reminders |
 | `m w 1920` | set variable `w = 1920` |
 | `calc mw * 2` | `1920 * 2 = 3840` |
+| `ld` | .lndf distillation (project snapshot) |
+| `lv` | show .lndf state |
+| `lc` | distillation + clipboard copy |
 | `?` | list all commands |
 
 ## Project Structure
@@ -71,6 +74,7 @@ mon-tab/
 ├── commands/       ← shared commands (1 file = 1 command)
 ├── core/           ← shared core (runner.js)
 ├── cli/bin/        ← CLI entry point (npm bin)
+├── skills/lndf/    ← SKILL.md for AI tools
 ├── chrome/         ← Chrome-specific UI
 ├── icons/          ← extension icons
 └── manifest.json   ← Chrome extension manifest
