@@ -1,29 +1,24 @@
 # CLAUDE.md — Mon [tab]
 
-## プロジェクト概要
+## Project Overview
 
-Mon [tab] は Chrome Omnibox から起動するコマンドパレット。キーワード: `mon`
+Mon [tab] is a command palette launched from Chrome Omnibox. Keyword: `mon`
 
-## 技術制約
+## Technical Constraints
 
 - Chrome Manifest V3
-- Service Worker ベース
-- Offscreen Document で clipboard 操作
-- Chrome拡張は外部依存なし（ライブラリ不使用）。CLI版はオプショナル依存あり（mathjs）
+- Service Worker based
+- Offscreen Document for clipboard operations
+- No external dependencies (no libraries). CLI version has optional dependency (mathjs)
 
-## コマンド構成
+## Command Structure
 
 ```
 commands/
   ├── calc.js
-  ├── conv.js
   ├── rand.js
   ├── em.js
   ├── ratio.js
-  ├── m.js (変数メモリ)
-  └── ...（1 command = 1 file）
+  ├── m.js (session variable)
+  └── ... (1 command = 1 file)
 ```
-
-## 既知のバグ
-
-- `mon m` の変数メモリにバグあり（修正予定）
