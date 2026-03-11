@@ -99,6 +99,8 @@ Commands should NOT use `chrome.*` APIs directly (use `scope: 'chrome'` for Chro
 
 The project root doubles as the Chrome extension root (`manifest.json` is at root). To package for Chrome Web Store:
 
-```bash
-zip -r mon-tab.zip . -x ".git/*" "node_modules/*" "skills/*" "cli/*" "test/*" ".gitignore" ".lndf/*" "package.json" "package-lock.json" "CONTRIBUTING.md" "*.log"
+```powershell
+powershell -ExecutionPolicy Bypass -File build-zip.ps1
 ```
+
+This creates `mon-tab-<version>.zip` (version read from `manifest.json`) containing only the files needed for the Chrome extension.

@@ -3,13 +3,18 @@ node_modules/
 .lndf/
 
 # Obsidian notes (tracked in Obsidian vault, not in git)
-docs/
+docs/_drafts/
 *.md
 !README.md
 !CONTRIBUTING.md
 !ISSUE_ROADMAP.md
 !CLAUDE.md
 !skills/lndf/SKILL.md
+
+# Build artifacts
+mon-tab-*.zip
+build-zip.ps1
+list-zip.ps1
 
 # Secrets
 Accsess token.txt
