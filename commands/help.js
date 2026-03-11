@@ -20,6 +20,7 @@ const categoryOrder = [
   ['dict',       'Dictionary'],
   ['geo',        'Geo'],
   ['lookup',     'Lookup'],
+  ['validation', 'Validation'],
   ['variable',   'Variable'],
   ['lndf',       'Distillation'],
   ['system',     'System'],

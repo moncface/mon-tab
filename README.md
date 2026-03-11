@@ -61,6 +61,12 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `em fire` | `🔥` |
 | `em feat` | `✨` (Gitmoji) |
 | `ratio 16 9 1920` | `1080` |
+| `rx /[0-9]+/g abc123` | 2 matches: "123" @3, ... |
+| `json {"a":1}` | formatted + validated JSON |
+| `url https://x.com/p?q=1` | parsed URL components |
+| `email user@example.com` | Valid / Invalid |
+| `ip 192.168.1.1` | IPv4 info (class, scope) |
+| `sv 1.2.3 2.0.0` | `1.2.3 < 2.0.0` |
 | `rem 30m review PR` | reminder in 30 min (Chrome) |
 | `rem ls` | list active reminders |
 | `m w 1920` | set variable `w = 1920` |

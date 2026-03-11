@@ -34,6 +34,12 @@ import * as emMod    from './em.js'
 import * as ratioMod from './ratio.js'
 import * as remMod   from './rem.js'
 import * as optMod   from './opt.js'
+import * as rxMod    from './rx.js'
+import * as jsonMod  from './json.js'
+import * as urlMod   from './url.js'
+import * as emailMod from './email.js'
+import * as ipMod    from './ip.js'
+import * as svMod    from './semver.js'
 // CLI-only stubs — real implementations loaded by CLI entry point
 // Chrome cannot load node:fs/path/child_process from ld.js/lv.js/lc.js
 const cliStub = (name, desc) => ({
@@ -85,6 +91,12 @@ const modules = [
   ['ratio', ratioMod],
   ['rem',   remMod],
   ['opt',   optMod],
+  ['rx',    rxMod],
+  ['json',  jsonMod],
+  ['url',   urlMod],
+  ['email', emailMod],
+  ['ip',    ipMod],
+  ['sv',    svMod],
   ['ld',    ldMod],
   ['lv',    lvMod],
   ['lc',    lcMod],

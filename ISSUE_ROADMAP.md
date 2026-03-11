@@ -91,13 +91,13 @@
 - [x] math.js integration for calc (CLI injection + built-in parser enhanced)
 - [x] npm v0.3.3 published
 
-## v1.1.0 — validation commands
-- [ ] rx — regex tester (popup window)
-- [ ] json — JSON validator / formatter
-- [ ] url — URL parser
-- [ ] email — email validator
-- [ ] ip — IP address info
-- [ ] semver — semver parser / compare
+## v1.1.0 — validation commands — done
+- [x] rx — regex tester
+- [x] json — JSON validator / formatter
+- [x] url — URL parser
+- [x] email — email validator
+- [x] ip — IP address info
+- [x] sv / semver — semver parser / compare
 
 ## v1.2.0 — API / network commands
 - [ ] fx — currency exchange
