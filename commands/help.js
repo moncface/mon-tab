@@ -10,11 +10,52 @@ export const meta = {
 let _commandList = []
 export function setCommandList(list) { _commandList = list }
 
-export const command = (arg) => {
-  const list = arg
-    ? _commandList.filter(c => c.category === arg)
-    : _commandList
+const categoryOrder = [
+  ['generators', 'Generators'],
+  ['encoding',   'Encoding'],
+  ['time',       'Time'],
+  ['string',     'String'],
+  ['math',       'Math'],
+  ['css',        'CSS'],
+  ['dict',       'Dictionary'],
+  ['geo',        'Geo'],
+  ['lookup',     'Lookup'],
+  ['variable',   'Variable'],
+  ['lndf',       'Distillation'],
+  ['system',     'System'],
+]
 
-  if (!list.length) return arg ? `No commands in category "${arg}"` : '(no commands)'
-  return list.map(c => `${c.name} — ${c.desc}`).join(' | ')
+export const command = (arg) => {
+  if (arg) {
+    const list = _commandList.filter(c => c.category === arg)
+    if (!list.length) return `No commands in category "${arg}"`
+    return list.map(c => `${c.name} — ${c.desc}`).join(' | ')
+  }
+
+  const lines = []
+  const grouped = {}
+  for (const c of _commandList) {
+    const cat = c.category || 'other'
+    if (!grouped[cat]) grouped[cat] = []
+    grouped[cat].push(c)
+  }
+
+  for (const [key, label] of categoryOrder) {
+    if (!grouped[key]) continue
+    lines.push(`── ${label} ──`)
+    for (const c of grouped[key]) {
+      lines.push(`  ${c.name.padEnd(6)} ${c.desc}`)
+    }
+    delete grouped[key]
+  }
+
+  // Remaining uncategorized
+  for (const [key, cmds] of Object.entries(grouped)) {
+    lines.push(`── ${key} ──`)
+    for (const c of cmds) {
+      lines.push(`  ${c.name.padEnd(6)} ${c.desc}`)
+    }
+  }
+
+  return lines.join('\n')
 }
