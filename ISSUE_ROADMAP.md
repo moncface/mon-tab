@@ -90,9 +90,11 @@
 - [ ] Command suggestions (prefix match)
 - [ ] rx — regex tester (popup window)
 - [ ] math.js integration for calc
+
+## v1.1.0 — command additions
 - [ ] 70 commands target
 
-## v1.5 — global / API
+## v1.2.0 — API / network commands
 - [ ] zip (global)
 - [ ] npm — latest version
 - [ ] dns — DNS lookup
@@ -100,6 +102,6 @@
 - [ ] wx — weather
 - [ ] log — command history viewer (popup window)
 
-## v2.0 — multi-platform
+## v2.0.0 — multi-platform
 - [ ] VSCode extension
 - [ ] Obsidian plugin
