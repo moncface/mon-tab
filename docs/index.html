@@ -449,8 +449,12 @@ mon calc mw / 2         &rarr; 1920 / 2 = 960</code></pre>
 <h4><code>ld</code> &mdash; Generate .lndf distillation</h4>
 <pre><code>mon ld                  &rarr; Generates project snapshot</code></pre>
 
-<h4><code>lv</code> &mdash; Show current .lndf state</h4>
-<pre><code>mon lv                  &rarr; Displays .lndf/current.lndf</code></pre>
+<h4><code>lv</code> &mdash; Show .lndf state / query hako index</h4>
+<pre><code>mon lv                  &rarr; Displays .lndf/current.lndf
+mon lv --reindex        &rarr; Build SQLite index from hako/ frontmatter
+mon lv --tag sql        &rarr; Search hako by tag
+mon lv --after 2026-03  &rarr; Search hako by date
+mon lv --stats          &rarr; Show index statistics</code></pre>
 
 <h4><code>lc</code> &mdash; Generate .lndf + copy to clipboard</h4>
 <pre><code>mon lc                  &rarr; Generates snapshot and copies to clipboard</code></pre>

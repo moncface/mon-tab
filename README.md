@@ -72,7 +72,10 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `m w 1920` | set variable `w = 1920` |
 | `calc mw * 2` | `1920 * 2 = 3840` |
 | `ld` | .lndf distillation (project snapshot) |
-| `lv` | show .lndf state |
+| `lv` | show .lndf state / query hako index |
+| `lv --reindex` | build SQLite index from hako/ |
+| `lv --tag sql` | search hako by tag |
+| `lv --stats` | show hako index statistics |
 | `lc` | distillation + clipboard copy |
 | `lp create myproj` | create source collection project |
 | `lp add myproj file` | add source to project |

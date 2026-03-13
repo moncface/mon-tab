@@ -30,6 +30,10 @@ User-global (mon lp):
 |---------|--------|
 | mon ld | Distill project state from git + package.json → .lndf/current.lndf |
 | mon lv | Display current.lndf |
+| mon lv --reindex | Build SQLite index from hako/ frontmatter |
+| mon lv --tag \<tag\> | Search hako by tag |
+| mon lv --after \<date\> | Search hako by date |
+| mon lv --stats | Show hako index statistics |
 | mon lc | Distill + copy to clipboard |
 
 ### Cross-project (aggregation)
