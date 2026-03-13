@@ -105,27 +105,28 @@
 
 ---
 
-# Phase Roadmap
+# Roadmap
 
-## Phase 0 — .lndf foundation — done
+## v0.5.0 — .lndf + cross-project aggregation — done
 - [x] ld / lv / lc — distillation commands
-- [x] SKILL.md
-- [x] stdin pipe support
-- [x] --version / --help flags
+- [x] SKILL.md, stdin pipe, --version / --help
 - [x] Validation commands (rx, json, url, email, ip, sv)
-
-## Phase 1 — Hakogumi + lndf aggregation → CLI v0.5.0
 - [x] mon lp (5 subcommands: create, add, view, dump, list)
 - [x] SKILL.md v2 / CLAUDE.md v2
 
-## Phase 2 — Developer commands (Tier 1) → CLI v0.6.0, Chrome v1.2.0
+## v0.5.x — SQLite infrastructure (sql.js)
+- [ ] sql.js dependency (pure JS, no native build)
+- [ ] adapters/sql-adapter.js (shared SQLite access layer)
+- [ ] mon lv enhancement (frontmatter index, tag search, date search)
+
+## v0.6.0 — Developer commands (Tier 1) + Chrome v1.2.0
 - [ ] color, hash, size, duration, epoch
 - [ ] urlencode / urldecode, htmlencode / htmldecode, unicode
 
-## Phase 3 — API commands → CLI v0.7.0, Chrome v1.3.0
+## v0.7.0 — API commands + Chrome v1.3.0
 - [ ] fx, wx, dns, npm
 
-## Phase 4 — Specialist commands (Tier 2) → CLI v0.8.0
+## v0.8.0 — Specialist commands (Tier 2)
 - [ ] deg, lerp, clamp, bpm, freq
 - [ ] cidr, subnet, cron, diff, env, id
 
