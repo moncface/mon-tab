@@ -455,6 +455,14 @@ mon calc mw / 2         &rarr; 1920 / 2 = 960</code></pre>
 <h4><code>lc</code> &mdash; Generate .lndf + copy to clipboard</h4>
 <pre><code>mon lc                  &rarr; Generates snapshot and copies to clipboard</code></pre>
 
+<h4><code>lp</code> &mdash; Cross-project source collection</h4>
+<pre><code>mon lp create myproj       &rarr; Create project in ~/.mon/projects/
+mon lp add myproj file.js  &rarr; Add source to project
+mon lp view myproj         &rarr; List sources with preview
+mon lp dump myproj         &rarr; Concatenate all sources for LLM context
+mon lp list                &rarr; List all projects</code></pre>
+<p>Aggregate source files across projects for LLM context injection.</p>
+
 <hr>
 
 <!-- System -->
