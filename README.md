@@ -74,6 +74,11 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `ld` | .lndf distillation (project snapshot) |
 | `lv` | show .lndf state |
 | `lc` | distillation + clipboard copy |
+| `lp create myproj` | create source collection project |
+| `lp add myproj file` | add source to project |
+| `lp view myproj` | list sources with preview |
+| `lp dump myproj` | concatenate all sources |
+| `lp list` | list all projects |
 | `?` | list all commands |
 
 ## Project Structure

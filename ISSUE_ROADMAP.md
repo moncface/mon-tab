@@ -100,13 +100,36 @@
 - [x] sv / semver — semver parser / compare
 - [x] npm v0.4.0 published
 
-## v1.2.0 — API / network commands
-- [ ] fx — currency exchange
-- [ ] wx — weather
-- [ ] dns — DNS lookup
-- [ ] npm — latest version
-- [ ] log — command history viewer (popup window)
+## Pending — after review approval
+- [ ] Set Chrome Web Store Support URL to https://moncface.github.io/mon-tab/
 
-## v2.0.0 — multi-platform
-- [ ] VSCode extension
-- [ ] Obsidian plugin
+---
+
+# Phase Roadmap
+
+## Phase 0 — .lndf foundation — done
+- [x] ld / lv / lc — distillation commands
+- [x] SKILL.md
+- [x] stdin pipe support
+- [x] --version / --help flags
+- [x] Validation commands (rx, json, url, email, ip, sv)
+
+## Phase 1 — Hakogumi + lndf aggregation → CLI v0.4.0
+- [x] mon lp (5 subcommands: create, add, view, dump, list)
+- [x] SKILL.md v2 / CLAUDE.md v2
+
+## Phase 2 — dict (Lookup engine) → CLI v0.5.0
+- [ ] mon dict (SQLite, optional language install)
+- [ ] en + thesaurus → ja → other languages
+- [ ] better-sqlite3 dependency
+
+## Phase 3 — Developer commands (Tier 1) → CLI v0.6.0, Chrome v1.2.0
+- [ ] color, hash, size, duration, epoch
+- [ ] urlencode / urldecode, htmlencode / htmldecode, unicode
+
+## Phase 4 — API commands → CLI v0.7.0, Chrome v1.3.0
+- [ ] fx, wx, dns, npm
+
+## Phase 5 — Specialist commands (Tier 2) → CLI v0.8.0
+- [ ] deg, lerp, clamp, bpm, freq
+- [ ] cidr, subnet, cron, diff, env, id
