@@ -9,6 +9,7 @@
   },
   "files": [
     "cli/bin/",
+    "cli/lib/",
     "core/",
     "commands/",
     "skills/"
@@ -33,6 +34,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "mathjs": "^15.1.1"
+    "mathjs": "^15.1.1",
+    "sql.js": "^1.12.0"
   }
 }

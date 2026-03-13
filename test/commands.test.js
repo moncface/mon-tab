@@ -88,6 +88,76 @@ for (const [input, expected] of escapeXmlTests) {
   }
 }
 
+// --- Test 4: sql-helpers unit tests ---
+import initSqlJs from 'sql.js'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { createDb, queryAll, queryOne, batchInsert } from '../cli/lib/sql-helpers.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const require = createRequire(import.meta.url)
+const wasmPath = join(dirname(require.resolve('sql.js')), 'sql-wasm.wasm')
+
+let SQL = null
+async function getSql() {
+  if (!SQL) SQL = await initSqlJs({ locateFile: () => wasmPath })
+  return SQL
+}
+
+try {
+  // createDb
+  const db = await createDb(getSql)
+  assert.ok(db, 'createDb returns a database')
+
+  // Create table and insert
+  db.run('CREATE TABLE test (id INTEGER PRIMARY KEY, name TEXT, value INTEGER)')
+  batchInsert(db, 'INSERT INTO test (name, value) VALUES (?, ?)', [
+    ['alpha', 10],
+    ['beta', 20],
+    ['gamma', 30],
+  ])
+
+  // queryAll
+  const all = queryAll(db, 'SELECT name, value FROM test ORDER BY value')
+  assert.strictEqual(all.length, 3, 'queryAll returns 3 rows')
+  assert.strictEqual(all[0].name, 'alpha')
+  assert.strictEqual(all[2].value, 30)
+
+  // queryAll with params
+  const filtered = queryAll(db, 'SELECT name FROM test WHERE value > ?', [15])
+  assert.strictEqual(filtered.length, 2, 'queryAll with params filters correctly')
+
+  // queryOne
+  const one = queryOne(db, 'SELECT name FROM test WHERE value = ?', [20])
+  assert.strictEqual(one.name, 'beta', 'queryOne returns single row')
+
+  // queryOne no match
+  const none = queryOne(db, 'SELECT name FROM test WHERE value = ?', [999])
+  assert.strictEqual(none, null, 'queryOne returns null for no match')
+
+  db.close()
+  passed += 6
+} catch (e) {
+  console.error(`FAIL: sql-helpers — ${e.message}`)
+  failed++
+}
+
+// --- Test 5: lv backward compatibility ---
+try {
+  const { command: lvCommand } = await import('../commands/lv.js')
+  // No args, no deps: should return .lndf or "No .lndf found" message
+  const result = await lvCommand('', {})
+  assert.ok(
+    typeof result === 'string' && result.length > 0,
+    'lv with empty arg returns a string'
+  )
+  passed++
+} catch (e) {
+  console.error(`FAIL: lv backward compat — ${e.message}`)
+  failed++
+}
+
 // --- Results ---
 console.log(`\n${passed} passed, ${failed} failed`)
 if (failed > 0) process.exit(1)

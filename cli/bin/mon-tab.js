@@ -6,6 +6,7 @@ import { setEvaluator } from '../../commands/calc.js'
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { tmpdir, homedir } from 'node:os'
 import { join } from 'node:path'
+import { createRequire } from 'node:module'
 
 // Inject Node.js file I/O into var-store (shared module has zero node:* imports)
 const persistentDir = join(homedir(), '.mon-tab')
@@ -22,6 +23,19 @@ try {
   setEvaluator(evaluate)
 } catch {}
 
+// Lazy sql.js initializer (only loaded when SQLite commands are called)
+let SQL = null
+async function getSql() {
+  if (!SQL) {
+    const initSqlJs = (await import('sql.js')).default
+    const require = createRequire(import.meta.url)
+    const { dirname } = await import('node:path')
+    const wasmPath = join(dirname(require.resolve('sql.js')), 'sql-wasm.wasm')
+    SQL = await initSqlJs({ locateFile: () => wasmPath })
+  }
+  return SQL
+}
+
 // Register real CLI-only commands (stubs in index.js for Chrome safety)
 const [ldMod, lvMod, lcMod, lpMod] = await Promise.all([
   import('../../commands/ld.js'),
@@ -29,9 +43,14 @@ const [ldMod, lvMod, lcMod, lpMod] = await Promise.all([
   import('../../commands/lc.js'),
   import('../../commands/lp.js'),
 ])
-for (const [name, mod] of [['ld', ldMod], ['lv', lvMod], ['lc', lcMod], ['lp', lpMod]]) {
+for (const [name, mod] of [['ld', ldMod], ['lc', lcMod], ['lp', lpMod]]) {
   registry.set(name, { run: mod.command, meta: { name, ...mod.meta } })
 }
+// lv gets getSql injected via closure (Pattern B)
+registry.set('lv', {
+  run: (arg) => lvMod.command(arg, { getSql }),
+  meta: { name: 'lv', ...lvMod.meta },
+})
 
 const flag = process.argv[2]
 
