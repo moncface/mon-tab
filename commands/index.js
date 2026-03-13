@@ -49,6 +49,7 @@ const cliStub = (name, desc) => ({
 const ldMod = cliStub('ld', '.lndf distillation (generate project snapshot)')
 const lvMod = cliStub('lv', 'Show .lndf distillation state')
 const lcMod = cliStub('lc', '.lndf distillation + clipboard copy')
+const lpMod = cliStub('lp', 'Manage cross-project source collections')
 
 import * as helpMod  from './help.js'
 import { setCommandList } from './help.js'
@@ -100,6 +101,7 @@ const modules = [
   ['ld',    ldMod],
   ['lv',    lvMod],
   ['lc',    lcMod],
+  ['lp',    lpMod],
   ['?',     helpMod],
 ]
 

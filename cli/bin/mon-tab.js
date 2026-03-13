@@ -23,12 +23,13 @@ try {
 } catch {}
 
 // Register real CLI-only commands (stubs in index.js for Chrome safety)
-const [ldMod, lvMod, lcMod] = await Promise.all([
+const [ldMod, lvMod, lcMod, lpMod] = await Promise.all([
   import('../../commands/ld.js'),
   import('../../commands/lv.js'),
   import('../../commands/lc.js'),
+  import('../../commands/lp.js'),
 ])
-for (const [name, mod] of [['ld', ldMod], ['lv', lvMod], ['lc', lcMod]]) {
+for (const [name, mod] of [['ld', ldMod], ['lv', lvMod], ['lc', lcMod], ['lp', lpMod]]) {
   registry.set(name, { run: mod.command, meta: { name, ...mod.meta } })
 }
 
