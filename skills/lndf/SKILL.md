@@ -28,7 +28,7 @@ User-global (mon lp):
 
 | Command | Action |
 |---------|--------|
-| mon ld | Distill project state from git + package.json → .lndf/current.lndf |
+| mon ld | Distill project state from git + package.json + npm test → .lndf/current.lndf |
 | mon lv | Display current.lndf |
 | mon lv --reindex | Build SQLite index from hako/ frontmatter |
 | mon lv --tag \<tag\> | Search hako by tag |
@@ -57,6 +57,7 @@ branch:main
 last:fix: update CONTRIBUTING.md packaging and docs
 changed:.gitignore,CONTRIBUTING.md,chrome/options.html,manifest.json
 stack:chrome-ext
+test:pass
 status:active development
 ---
 ```
@@ -66,6 +67,18 @@ Interpretation:
 - key:value pairs = project state
 - Comma-separated values = lists
 - Absent fields = use defaults (LLM infers)
+
+### Debug Distillation Fields (v0.5.2)
+
+| Field | Value | Meaning |
+|-------|-------|---------|
+| `test:pass` | npm test exited 0 | All tests passing |
+| `test:fail` | npm test exited 1 | Tests failing |
+| `test:timeout` | npm test exceeded 30s | Tests hung |
+| `error:...` | stderr tail (last 3 lines) | Only present when test:fail |
+
+- If `scripts.test` is absent in package.json, `test:` and `error:` fields are omitted (Defaults Are Silence)
+- `test:fail` or `test:timeout` overrides status to `debugging`
 
 ## How to Read mon lp dump Output
 

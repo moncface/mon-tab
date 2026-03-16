@@ -119,11 +119,11 @@
 - [x] cli/lib/sql-helpers.js (shared SQLite helper layer)
 - [x] mon lv enhancement (frontmatter index, tag search, date search)
 
-## v0.5.2 — mon ld enhancement (debug distillation)
-- [ ] Auto-capture npm test result (pass/fail)
-- [ ] Auto-capture recent error message (stderr tail)
-- [ ] Status linked to test result (debugging / passing / active development)
-- [ ] Extend existing ld.js only, no new commands
+## v0.5.2 — mon ld enhancement (debug distillation) — done
+- [x] Auto-capture npm test result (pass/fail/timeout)
+- [x] Auto-capture recent error message (stderr tail, last 3 lines)
+- [x] Status linked to test result (test:fail → status:debugging)
+- [x] Extend existing ld.js only, no new commands
 
 ## v0.6.0 — Developer commands (Tier 1) + Chrome v1.2.0
 - [ ] color, hash, size, duration, epoch
