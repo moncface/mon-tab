@@ -48,6 +48,19 @@ export async function distill() {
     return parts.join(',')
   }
 
+  function getTestResult(pkg) {
+    if (!pkg || !pkg.scripts || !pkg.scripts.test) return null
+    try {
+      cp.execSync('npm test', { cwd: root, timeout: 30000, stdio: 'pipe' })
+      return { test: 'pass' }
+    } catch (e) {
+      if (e.killed) return { test: 'timeout' }
+      const stderr = e.stderr ? e.stderr.toString().trim() : ''
+      const lastLines = stderr.split('\n').slice(-3).join(' ').trim()
+      return { test: 'fail', error: lastLines || null }
+    }
+  }
+
   const root = findRoot()
   if (!root) return { content: null, error: 'Not in a project (no .git or package.json found)' }
 
@@ -79,16 +92,23 @@ export async function distill() {
   // Project name + stack from package.json
   let projectName = path.basename(root)
   let stack = ''
+  let pkg = null
   const pkgPath = path.join(root, 'package.json')
   if (fs.existsSync(pkgPath)) {
     try {
-      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'))
+      pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'))
       if (pkg.name) projectName = pkg.name
       stack = detectStack(pkg)
     } catch {}
   }
 
-  const status = changedList.length > 0 ? 'active development' : 'clean'
+  // Test result
+  const testResult = getTestResult(pkg)
+
+  // Status: test:fail/timeout overrides all
+  const status = (testResult && (testResult.test === 'fail' || testResult.test === 'timeout'))
+    ? 'debugging'
+    : changedList.length > 0 ? 'active development' : 'clean'
 
   // Build .lndf content
   const lines = ['---', projectName]
@@ -97,6 +117,10 @@ export async function distill() {
   if (changed)   lines.push(`changed:${changed}`)
   if (wip)       lines.push(`wip:${wip}`)
   if (stack)     lines.push(`stack:${stack}`)
+  if (testResult) {
+    lines.push(`test:${testResult.test}`)
+    if (testResult.error) lines.push(`error:${testResult.error}`)
+  }
   lines.push(`status:${status}`)
   lines.push('---')
   const content = lines.join('\n')

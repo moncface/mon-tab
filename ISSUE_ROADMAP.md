@@ -114,10 +114,16 @@
 - [x] mon lp (5 subcommands: create, add, view, dump, list)
 - [x] SKILL.md v2 / CLAUDE.md v2
 
-## v0.5.x — SQLite infrastructure (sql.js) — done
+## v0.5.1 — SQLite infrastructure (sql.js) — done
 - [x] sql.js dependency (pure JS, no native build)
 - [x] cli/lib/sql-helpers.js (shared SQLite helper layer)
 - [x] mon lv enhancement (frontmatter index, tag search, date search)
+
+## v0.5.2 — mon ld enhancement (debug distillation)
+- [ ] Auto-capture npm test result (pass/fail)
+- [ ] Auto-capture recent error message (stderr tail)
+- [ ] Status linked to test result (debugging / passing / active development)
+- [ ] Extend existing ld.js only, no new commands
 
 ## v0.6.0 — Developer commands (Tier 1) + Chrome v1.2.0
 - [ ] color, hash, size, duration, epoch
