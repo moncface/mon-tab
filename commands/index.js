@@ -42,14 +42,16 @@ import * as ipMod    from './ip.js'
 import * as svMod    from './semver.js'
 // CLI-only stubs — real implementations loaded by CLI entry point
 // Chrome cannot load node:fs/path/child_process from ld.js/lv.js/lc.js
-const cliStub = (name, desc) => ({
-  meta: { name, desc, category: 'lndf', usage: name, scope: 'cli' },
+const cliStub = (name, desc, category = 'lndf') => ({
+  meta: { name, desc, category, usage: name, scope: 'cli' },
   command: () => `"${name}" is CLI-only — run: mon ${name}`,
 })
 const ldMod = cliStub('ld', '.lndf distillation (generate project snapshot)')
 const lvMod = cliStub('lv', 'Show .lndf distillation state')
 const lcMod = cliStub('lc', '.lndf distillation + clipboard copy')
 const lpMod = cliStub('lp', 'Manage cross-project source collections')
+const ltMod = cliStub('lt', 'LNDF token comparison')
+const clipMod = cliStub('clip', 'Read clipboard content', 'system')
 
 import * as helpMod  from './help.js'
 import { setCommandList } from './help.js'
@@ -102,6 +104,8 @@ const modules = [
   ['lv',    lvMod],
   ['lc',    lcMod],
   ['lp',    lpMod],
+  ['lt',    ltMod],
+  ['clip',  clipMod],
   ['?',     helpMod],
 ]
 

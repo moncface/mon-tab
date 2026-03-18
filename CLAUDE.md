@@ -24,6 +24,8 @@ commands/
   ├── lv.js (view/query — CLI only)
   ├── lc.js (distill + clipboard — CLI only)
   ├── lp.js (cross-project — CLI only)
+  ├── lt.js (token comparison — CLI only)
+  ├── clip.js (clipboard read — CLI only)
   └── ... (1 command = 1 file)
 ```
 

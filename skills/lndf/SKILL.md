@@ -41,6 +41,7 @@ User-global (mon lp):
 | mon lv --after \<date\> | Search hako by date |
 | mon lv --stats | Show hako index statistics |
 | mon lc | Distill + copy to clipboard |
+| mon lt | Compare .lndf tokens vs JSON equivalent |
 
 ### Cross-project (aggregation)
 

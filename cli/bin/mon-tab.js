@@ -37,13 +37,15 @@ async function getSql() {
 }
 
 // Register real CLI-only commands (stubs in index.js for Chrome safety)
-const [ldMod, lvMod, lcMod, lpMod] = await Promise.all([
+const [ldMod, lvMod, lcMod, lpMod, ltMod, clipMod] = await Promise.all([
   import('../../commands/ld.js'),
   import('../../commands/lv.js'),
   import('../../commands/lc.js'),
   import('../../commands/lp.js'),
+  import('../../commands/lt.js'),
+  import('../../commands/clip.js'),
 ])
-for (const [name, mod] of [['ld', ldMod], ['lc', lcMod], ['lp', lpMod]]) {
+for (const [name, mod] of [['ld', ldMod], ['lc', lcMod], ['lp', lpMod], ['lt', ltMod], ['clip', clipMod]]) {
   registry.set(name, { run: mod.command, meta: { name, ...mod.meta } })
 }
 // lv gets getSql injected via closure (Pattern B)

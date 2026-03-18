@@ -143,7 +143,56 @@ try {
   failed++
 }
 
-// --- Test 5: lv backward compatibility ---
+// --- Test 5: lt — lndfToJson unit tests ---
+import { lndfToJson } from '../commands/lt.js'
+
+const ltTests = [
+  {
+    name: 'basic lndf conversion',
+    input: '---\nmon-tab\nbranch:main\nlast:feat: add lt command\nchanged:lt.js,index.js\nstack:chrome-ext\ntest:pass\nstatus:active development\n---',
+    checks: (json) => {
+      const obj = JSON.parse(json)
+      assert.strictEqual(obj.name, 'mon-tab')
+      assert.strictEqual(obj.branch, 'main')
+      assert.deepStrictEqual(obj.changed, ['lt.js', 'index.js'])
+      assert.strictEqual(obj.stack, 'chrome-ext')
+      assert.strictEqual(obj.language, 'javascript')
+      assert.strictEqual(obj.framework, 'vanilla')
+      assert.strictEqual(obj.manifest_version, '3')
+    },
+  },
+  {
+    name: 'node stack infers defaults',
+    input: '---\nmy-cli\nstack:node\n---',
+    checks: (json) => {
+      const obj = JSON.parse(json)
+      assert.strictEqual(obj.name, 'my-cli')
+      assert.strictEqual(obj.language, 'javascript')
+      assert.strictEqual(obj.framework, 'none')
+    },
+  },
+  {
+    name: 'json is always larger than lndf',
+    input: '---\nmon-tab\nbranch:main\nstack:chrome-ext\ntest:pass\nstatus:clean\n---',
+    checks: (json) => {
+      const lndfLen = '---\nmon-tab\nbranch:main\nstack:chrome-ext\ntest:pass\nstatus:clean\n---'.length
+      assert.ok(json.length > lndfLen, `JSON (${json.length}) should be longer than lndf (${lndfLen})`)
+    },
+  },
+]
+
+for (const t of ltTests) {
+  try {
+    const json = lndfToJson(t.input)
+    t.checks(json)
+    passed++
+  } catch (e) {
+    console.error(`FAIL: lt/${t.name} — ${e.message}`)
+    failed++
+  }
+}
+
+// --- Test 6: lv backward compatibility ---
 try {
   const { command: lvCommand } = await import('../commands/lv.js')
   // No args, no deps: should return .lndf or "No .lndf found" message

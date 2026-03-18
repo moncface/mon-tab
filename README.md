@@ -83,6 +83,8 @@ Type `mon` in the address bar, press **Tab**, enter a command. Press **Enter** t
 | `lp view myproj` | list sources with preview |
 | `lp dump myproj` | concatenate all sources |
 | `lp list` | list all projects |
+| `lt` | LNDF vs JSON token comparison |
+| `clip` | read clipboard content |
 | `?` | list all commands |
 
 ## Project Structure

@@ -459,6 +459,14 @@ mon lv --stats          &rarr; Show index statistics</code></pre>
 <h4><code>lc</code> &mdash; Generate .lndf + copy to clipboard</h4>
 <pre><code>mon lc                  &rarr; Generates snapshot and copies to clipboard</code></pre>
 
+<h4><code>lt</code> &mdash; LNDF token comparison</h4>
+<pre><code>mon lt                  &rarr; Compare .lndf tokens vs JSON equivalent</code></pre>
+<p>Shows how many tokens .lndf saves compared to a full JSON representation.</p>
+
+<h4><code>clip</code> &mdash; Read clipboard content</h4>
+<pre><code>mon clip                &rarr; Display current clipboard content</code></pre>
+<p>Cross-platform clipboard reader. Works with <code>mon lc</code> for verify-after-copy workflow.</p>
+
 <h4><code>lp</code> &mdash; Cross-project source collection</h4>
 <pre><code>mon lp create myproj       &rarr; Create project in ~/.mon/projects/
 mon lp add myproj file.js  &rarr; Add source to project

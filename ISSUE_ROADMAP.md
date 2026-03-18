@@ -125,14 +125,18 @@
 - [x] Status linked to test result (test:fail → status:debugging)
 - [x] Extend existing ld.js only, no new commands
 
-## v0.6.0 — Developer commands (Tier 1) + Chrome v1.2.0
+## v0.6.0 — LNDF token comparison + clipboard reader — done
+- [x] lt — LNDF vs JSON token comparison (Phase 2 start)
+- [x] clip — cross-platform clipboard reader
+
+## v0.7.0 — Developer commands (Tier 1) + Chrome v1.2.0
 - [ ] color, hash, size, duration, epoch
 - [ ] urlencode / urldecode, htmlencode / htmldecode, unicode
 
-## v0.7.0 — API commands + Chrome v1.3.0
+## v0.8.0 — API commands + Chrome v1.3.0
 - [ ] fx, wx, dns, npm
 
-## v0.8.0 — Specialist commands (Tier 2)
+## v0.9.0 — Specialist commands (Tier 2)
 - [ ] deg, lerp, clamp, bpm, freq
 - [ ] cidr, subnet, cron, diff, env, id
 
