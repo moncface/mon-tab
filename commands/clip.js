@@ -13,7 +13,7 @@ export const command = async () => {
   let result
   try {
     if (platform === 'win32') {
-      result = cp.execSync('powershell -command "Get-Clipboard"', { encoding: 'utf-8' })
+      result = cp.execSync('powershell -command "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Clipboard"', { encoding: 'utf-8' })
     } else if (platform === 'darwin') {
       result = cp.execSync('pbpaste', { encoding: 'utf-8' })
     } else {
