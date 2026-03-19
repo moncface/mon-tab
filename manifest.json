@@ -14,6 +14,6 @@
     "page": "chrome/options.html",
     "open_in_tab": true
   },
-  "permissions": ["alarms", "notifications", "offscreen", "storage"],
+  "permissions": ["alarms", "clipboardWrite", "notifications", "offscreen", "storage"],
   "host_permissions": ["https://zipcloud.ibsnet.co.jp/*"]
 }
