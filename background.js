@@ -39,9 +39,11 @@ async function copyToClipboard(text) {
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (!alarm.name.startsWith('rem:')) return
   const message = alarm.name.replace('rem:', '')
-  self.registration.showNotification('Mon [tab] Reminder', {
-    body: message,
-    icon: 'icons/icon128.png',
+  chrome.notifications.create(alarm.name, {
+    type: 'basic',
+    title: 'Mon [tab] Reminder',
+    message,
+    iconUrl: 'icons/icon128.png',
   })
 })
 

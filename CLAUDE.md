@@ -37,3 +37,9 @@ Output fields: project name, branch, last commit, changed files, wip, stack, tes
 
 `test:fail` or `test:timeout` → `status:debugging` (overrides all).
 No `scripts.test` → `test:` / `error:` fields omitted.
+
+## Chrome Web Store Submission Checklist
+
+- manifest.json の全 permissions について、コード内に対応する `chrome.*` API 呼び出しが存在することを確認
+- 未使用権限は削除。将来用の先取り宣言は禁止 (CWS Purple Potassium 違反)
+- `activeTab` で代替可能な場合は `tabs` を使わない
