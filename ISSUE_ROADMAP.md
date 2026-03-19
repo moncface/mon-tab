@@ -100,6 +100,13 @@
 - [x] sv / semver — semver parser / compare
 - [x] npm v0.4.0 published
 
+## v1.1.1 — CWS permission fix — done
+- [x] Remove unused `clipboardWrite` permission (navigator.clipboard.writeText doesn't need it)
+  - Restored: offscreen `execCommand('copy')` fallback requires it
+- [x] Switch `self.registration.showNotification()` to `chrome.notifications.create()`
+  so the `notifications` permission is actually used via chrome.* API
+- [x] CWS submission checklist added to CLAUDE.md
+
 ## Pending — after review approval
 - [ ] Set Chrome Web Store Support URL to https://moncface.github.io/mon-tab/
 
