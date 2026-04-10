@@ -1,6 +1,6 @@
 # Mon tab
 
-> Omnibox-based developer CLI for Chrome. 103 commands across 15 categories.
+> Omnibox-based developer CLI for Chrome. 50 commands across 15 categories.
 
 Lightweight Chrome extension that turns the browser address bar into a developer command line. No API dependencies. No data collection. Zero external requests.
 
