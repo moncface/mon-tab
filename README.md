@@ -1,5 +1,6 @@
 # montab
 
+[![GitHub release](https://img.shields.io/github/v/release/moncface/mon-tab)](https://github.com/moncface/mon-tab/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > Dev tools in your address bar & terminal. Type `mon` — get results.
