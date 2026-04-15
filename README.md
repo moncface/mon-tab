@@ -1,8 +1,6 @@
 # montab
 
-[![npm version](https://img.shields.io/npm/v/mon-tab)](https://www.npmjs.com/package/mon-tab)
-[![npm downloads](https://img.shields.io/npm/dw/mon-tab)](https://www.npmjs.com/package/mon-tab)
-[![License](https://img.shields.io/github/license/moncface/mon-tab)](https://github.com/moncface/mon-tab/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > Dev tools in your address bar & terminal. Type `mon` — get results.
 >
