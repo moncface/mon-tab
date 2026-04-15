@@ -1,4 +1,4 @@
-# mon[tab]
+# montab
 
 > Dev tools in your address bar & terminal. Type `mon` — get results.
 >
@@ -106,7 +106,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add commands.
 
 ## Why
 
-Opening a new tab to generate a UUID, encode base64, or look up an HTTP status code is friction you don't need. `mon[tab]` puts the tools where you already are — Chrome's address bar or your terminal.
+Opening a new tab to generate a UUID, encode base64, or look up an HTTP status code is friction you don't need. `montab` puts the tools where you already are — Chrome's address bar or your terminal.
 
 ## Roadmap
 
@@ -118,7 +118,7 @@ All commands run locally in your browser. No data is collected or sent to extern
 
 ## Support
 
-If mon[tab] saves you time:
+If montab saves you time:
 
 [![Support moncface](https://img.shields.io/badge/%E2%98%95_Support_moncface-Ko--fi-FF5E5B?style=for-the-badge)](https://ko-fi.com/moncface)
 
