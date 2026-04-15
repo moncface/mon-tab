@@ -36,5 +36,9 @@
   "dependencies": {
     "mathjs": "^15.1.1",
     "sql.js": "^1.12.0"
+  },
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/moncface"
   }
 }
